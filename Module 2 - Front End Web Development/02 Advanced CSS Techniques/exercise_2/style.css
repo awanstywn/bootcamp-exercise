@@ -1,0 +1,312 @@
+/* ========================================
+   RESET & BASE STYLES
+   Remove default margins/padding for consistency
+======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========================================
+   BODY LAYOUT
+   Center the grid container in viewport
+   - Light blue background
+   - Flexbox for perfect centering
+   - Full viewport height
+======================================== */
+body{
+    background-color: #ECF2F8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* ========================================
+   MAIN GRID CONTAINER
+   CSS Grid layout for 5 testimonial cards
+   Desktop layout (2 rows, 4 columns):
+   - Card 1: spans 2 columns (top left)
+   - Card 2: 1 column (top right)
+   - Card 3: 1 column (bottom left)
+   - Card 4: spans 2 columns (bottom middle)
+   - Card 5: 1 column, double height (right side)
+======================================== */
+#container{
+    display: grid;
+    gap: 30px;
+    padding: 30px;
+    grid-template-areas:
+        "card1 card1 card2 card5"
+        "card3 card4 card4 card5";
+}
+
+/* ========================================
+   COMMON CARD STYLES
+   Applied to all cards inside container
+   - Rounded corners, shadow for depth
+   - Flexbox for vertical content distribution
+   - Space between elements for clean layout
+======================================== */
+#container > *{
+    padding: 26px 32px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    justify-content: space-between;
+}
+
+/* ========================================
+   PURPLE BORDER
+   Add purple border to Card 1 and Card 4 user images
+======================================== */
+#card1 .user img,
+#card4 .user img{
+    border: 2px solid #A775F1;
+}
+
+/* ========================================
+   USER PROFILE SECTION
+   Flex layout for avatar + name + status
+======================================== */
+.user{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 28px;
+}
+
+/* Circular avatar images */
+.user img{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Name and status stacked vertically */
+.user-info{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   Using Barlow Semi Condensed font
+   Different weights/sizes for hierarchy
+======================================== */
+
+.name{
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 13px;
+}
+
+.status{
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 11px;
+    opacity: 50%; /* Subtle appearance for secondary text */
+}
+
+.highlight{
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+}
+
+.testimoni{
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    opacity: 70%; /* Slightly faded for readability */
+}
+
+/* ========================================
+   CARD 1 - Purple (Primary Feature)
+   - 2 columns wide, decorative symbol
+   - Symbol layered behind text
+======================================== */
+#card1{
+    position: relative;
+    grid-area: card1;
+    width: 540px;
+    min-height: 282px;
+    background-color: #733FC8;
+    color: #FFFFFF;
+}
+
+/* Light gray text for testimonial on purple */
+#card1 .testimoni{
+    color: #CFCFCF;
+}
+
+/* Quote symbol: absolute positioning, behind content */
+#card1 .symbol{
+    position: absolute;
+    width: 104px;
+    height: 102px;
+    top: 0;
+    right: 80px;
+    opacity: 1;
+    z-index: 1; /* Below text, above background */
+}
+
+/* Text content: above symbol */
+#card1 .user,
+#card1 .highlight,
+#card1 .testimoni{
+    position: relative;
+    z-index: 2;
+}
+
+/* ========================================
+   CARD 2 - Dark Gray (Top Right)
+======================================== */
+#card2{
+    background-color: #48556A;
+    color: #FFFFFF;
+    grid-area: card2;
+    width: 255px;
+    min-height: 282px;
+}
+
+/* ========================================
+   CARD 3 - White (Bottom Left)
+======================================== */
+#card3{
+    background-color: #FFFFFF;
+    color: #48556A;
+    grid-area: card3;
+    width: 255px;
+    min-height: 266px;
+}
+
+/* ========================================
+   CARD 4 - Black (Bottom Middle)
+   - 2 columns wide
+======================================== */
+#card4{
+    background-color: #19202D;
+    color: #FFFFFF;
+    grid-area: card4;
+    width: 540px;
+    min-height: 266px;
+}
+
+/* ========================================
+   CARD 5 - White (Bottom Right)
+   - 1 column, double height
+======================================== */
+#card5{
+    background-color: #FFFFFF;
+    color: #48556A;
+    grid-area: card5;
+    width: 255px;
+    min-height: 572px;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+   Adapts layout for different screen sizes
+======================================== */
+
+/* LARGE TABLETS (iPad Pro 12.9", Surface Pro 7 landscape) */
+@media (max-width: 1366px){
+    #container{
+        gap: 24px;
+        padding: 24px;
+    }
+}
+
+/* MEDIUM TABLETS (iPad Air, iPad Pro 11", portrait) */
+/* Layout changes to 2-column grid */
+@media (max-width: 1024px){
+    body{
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 50px; /* Space around container */
+    }
+
+    #container{
+        grid-template-areas:
+            "card1 card1"
+            "card2 card3"
+            "card4 card5";
+        grid-template-columns: 1fr 1fr; /* 2 equal columns */
+        padding: 0;
+        gap: 24px;
+    }
+
+    /* Wide cards (1, 4) fill their columns */
+    #card1, #card4{
+        width: 100%;
+        min-height: auto;
+    }
+
+    /* Standard cards (2, 3, 5) fill their columns */
+    #card2, #card3, #card5{
+        width: 100%;
+        min-height: auto;
+    }
+
+    #container > *{
+        padding: 24px;
+    }
+}
+
+/* SMALL TABLETS */
+/* Maintains 2-column layout */
+@media (max-width: 768px){
+    #container{
+        grid-template-areas:
+            "card1 card1"
+            "card2 card3"
+            "card4 card5";
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* MOBILE DEVICES */
+/* Single column stacked layout */
+@media (max-width: 480px){
+    body{
+        padding: 71px 24px; /* 71px top/bottom, 24px sides */
+    }
+
+    #container{
+        grid-template-areas:
+            "card1"
+            "card2"
+            "card3"
+            "card4"
+            "card5";
+        grid-template-columns: 1fr; /* Single column */
+        padding: 15px 0;
+        gap: 20px;
+    }
+
+    #container > *{
+        padding: 20px;
+    }
+
+    /* All cards full width */
+    #card1, #card2, #card3, #card4, #card5{
+        width: 100%;
+        min-height: auto;
+    }
+
+    /* Smaller font for mobile */
+    .highlight{
+        font-size: 18px;
+    }
+}
