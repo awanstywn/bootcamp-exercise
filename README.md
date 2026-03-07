@@ -27,22 +27,23 @@ Bootcamp Exercise/
 ### Module 1 - Programming Fundamental
 Foundation concepts in programming including variables, data types, control flow, functions, OOP, algorithms, and data structures.
 
-| Sub Module | Topics Covered | Status |
+| Sub Module | Exercise Files | Status |
 |------------|----------------|--------|
-| Intro to Programming, Variable, Data Types | Variables, data types, basic operators | ✅ Completed |
-| Conditional and Loop Statements | If/else, switch, for/while loops | ✅ Completed |
-| Array and Function | Arrays, array methods, functions | ✅ Completed |
-| Object Oriented Programming | Classes, objects, inheritance | ✅ Completed |
-| Algorithm & Data Structure | Sorting, searching, data structures | ✅ Completed |
-| Advanced JavaScript Concepts | Closures, async, prototypes | ✅ Completed |
+| Intro to Programming, Variable, Data Types | `21012026-Aries Setiawan.js` | ✅ Completed |
+| Conditional and Loop Statements | `20260127-app.js` | ✅ Completed |
+| Array and Function | `array-function.js` | ✅ Completed |
+| Exercise | `20260203-exercise-1.js`, `202260203-exercise2.js`, `20260203-exercise3.js` | ✅ Completed |
+| Object Oriented Programming | `20260205-exercise-modul6.ts` | ✅ Completed |
+| Algorithm & Data Structure | `20260210-exercise-algo.ts`, `20260210-exercise-ds.ts` | ✅ Completed |
+| Advanced JavaScript Concepts | `20260214-exercise-module8.ts` | ✅ Completed |
 
 ### Module 2 - Front End Web Development
 Building responsive and interactive web interfaces.
 
-| Sub Module | Topics Covered | Status |
+| Sub Module | Exercise Files | Status |
 |------------|----------------|--------|
-| Intro to Frontend Development with HTML & CSS | HTML structure, CSS styling, layouts | ✅ Completed |
-| Advanced CSS Techniques | Flexbox, Grid, animations, responsive design | ✅ Completed |
+| Intro to Frontend Development with HTML & CSS | `exercise_1/index.html`, `exercise_2/index.html` | ✅ Completed |
+| Advanced CSS Techniques | `exercise_1/index.html`, `exercise_2/index.html` | ✅ Completed |
 
 **Overall Module Status:** 🔄 In Progress
 
@@ -50,9 +51,9 @@ Building responsive and interactive web interfaces.
 This repository will be continuously updated throughout the bootcamp until completion.
 
 #### Upcoming Modules:
-- 🔜 **Module 3: Backend Development** - Server-side programming, APIs, databases
-- 🔜 **Module 4: Framework & Libraries** - Modern frameworks like React, Vue, Angular
-- 🔜 **Module 5: Deployment & DevOps** - Cloud deployment, CI/CD, Docker
+- 🔜 **Module 3: Backend Development** - Server-side programming with Node.js, Express, RESTful APIs, databases (MongoDB, PostgreSQL), authentication & authorization
+- 🔜 **Module 4: Frontend Frameworks** - Modern frameworks and libraries (React.js, state management with Redux/Context, component lifecycle, hooks, routing)
+- 🔜 **Module 5: Fullstack Projects** - Integration of frontend and backend, real-world applications, best practices, project architecture, and deployment
 
 ## 🎯 Learning Journey
 
