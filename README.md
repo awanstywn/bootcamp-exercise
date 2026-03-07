@@ -1,6 +1,11 @@
-# 🚀 Fullstack Engineer Bootcamp Exercise Repository
+# 🚀 Fullstack Web Development Bootcamp Exercise Repository
 
-> **Welcome to my bootcamp journey!** This repository contains all exercises, projects, and assignments throughout the Fullstack Engineer Bootcamp at Purwadhika.
+> **Welcome to my bootcamp journey!** This repository contains all exercises, projects, and assignments throughout the Fullstack Web Development Bootcamp at Purwadhika.
+
+## 🌐 Preview Landing Page
+
+**Check out the preview landing page with live previews:**
+[👉 View Landing Page](https://awanstywn.github.io/bootcamp-exercise/)
 
 ## 📚 Repository Structure
 
@@ -39,8 +44,15 @@ Building responsive and interactive web interfaces.
 | Intro to Frontend Development with HTML & CSS | HTML structure, CSS styling, layouts | ✅ Completed |
 | Advanced CSS Techniques | Flexbox, Grid, animations, responsive design | ✅ Completed |
 
+**Overall Module Status:** 🔄 In Progress
+
 ### 🔄 More modules coming soon...
 This repository will be continuously updated throughout the bootcamp until completion.
+
+#### Upcoming Modules:
+- 🔜 **Module 3: Backend Development** - Server-side programming, APIs, databases
+- 🔜 **Module 4: Framework & Libraries** - Modern frameworks like React, Vue, Angular
+- 🔜 **Module 5: Deployment & DevOps** - Cloud deployment, CI/CD, Docker
 
 ## 🎯 Learning Journey
 
@@ -63,10 +75,3 @@ This repository will be continuously updated throughout the bootcamp until compl
 - Git & GitHub
 - VS Code
 - Modern Web Browsers
-
-
-
-
-
-
-

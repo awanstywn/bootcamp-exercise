@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootcamp Exercise Repository - Fullstack Web Development</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a365d 50%, #0d1b2a 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .background-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .code-rain {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, #3b82f6, transparent);
+            animation: codeRain 3s infinite;
+            opacity: 0.3;
+        }
+
+        .code-rain:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .code-rain:nth-child(2) {
+            left: 50%;
+            animation-delay: 1s;
+        }
+
+        .code-rain:nth-child(3) {
+            left: 90%;
+            animation-delay: 2s;
+        }
+
+        @keyframes codeRain {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header::after {
+            content: '</>';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4rem;
+            opacity: 0.1;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        .header-content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .tech-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .tech-icon {
+            font-size: 2rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .tech-icon:hover {
+            opacity: 1;
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .main-content {
+            margin-bottom: 60px;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .module-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
+        }
+
+        .module-header {
+            padding: 25px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .module-header:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .module-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .module-description {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .module-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.completed {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status-badge.in-progress {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .status-badge.coming-soon {
+            background: rgba(107, 114, 128, 0.2);
+            color: #94a3b8;
+            border: 1px solid rgba(107, 114, 128, 0.3);
+        }
+
+        .submodules-content {
+            border-top: 1px solid rgba(59, 130, 246, 0.1);
+            display: none;
+        }
+
+        .submodules-content.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .submodule {
+            padding: 20px 25px;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .submodule:last-child {
+            border-bottom: none;
+        }
+
+        .submodule-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .submodule-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background: #3b82f6;
+            margin-right: 12px;
+            border-radius: 2px;
+        }
+
+        .exercises-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .exercise-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .exercise-item:hover {
+            background: rgba(59, 130, 246, 0.05);
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateX(5px);
+        }
+
+        .exercise-name {
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 12px;
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        .exercise-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 1px solid transparent;
+        }
+
+        .btn-view {
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-view:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+
+        .btn-preview {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: 1px solid rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-preview:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                padding: 30px 20px;
+            }
+
+            .module-title {
+                font-size: 1.2rem;
+            }
+
+            .exercise-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-decoration">
+        <div class="code-rain"></div>
+        <div class="code-rain"></div>
+        <div class="code-rain"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">🚀 Fullstack Web Development Bootcamp</h1>
+                <p class="subtitle">Exercise Repository | Purwadhika</p>
+                <div class="tech-icons">
+                    <span class="tech-icon">⚛️</span>
+                    <span class="tech-icon">📝</span>
+                    <span class="tech-icon">🎨</span>
+                    <span class="tech-icon">🔧</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="modules-grid">
+                <!-- Module 1 -->
+                <div class="module-card">
+                    <div class="module-header" onclick="toggleModule('module1')">
+                        <div>
+                            <h2 class="module-title">Module 1: Programming Fundamental</h2>
+                            <p class="module-description">Foundation concepts in programming including variables, data types, control flow, functions, OOP, algorithms, and data structures.</p>
+                            <div class="module-meta">
+                                <span class="status-badge completed">✅ Completed</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submodules-content" id="module1">
+                        <div class="submodule">
+                            <h3 class="submodule-title">01. Intro to Programming, Variable, Data Types</h3>
+                            <div class="exercises-list">
+                                <div class="exercise-item">
+                                    <span class="exercise-name">📄 Exercise 1</span>
+                                    <div class="exercise-actions">
+                                        <a href="https://github.com/awanstywn/bootcamp-exercise/blob/main/Module%201%20-%20Programming%20Fundamental/01%20Intro%20to%20Programming,%20Variable,%20Data%20Types/21012026-Aries%20Setiawan.js" target="_blank" class="btn btn-view">View Code</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submodule">
+                            <h3 class="submodule-title">03. Conditional and Loop Statements</h3>
+                            <div class="exercises-list">
+                                <div class="exercise-item">
+                                    <span class="exercise-name">📄 Exercise 1</span>
+                                    <div class="exercise-actions">
+                                        <a href="https://github.com/awanstywn/bootcamp-exercise/blob/main/Module%201%20-%20Programming%20Fundamental/03%20Conditional%20and%20Loop%20Statements/20260127-app.js" target="_blank" class="btn btn-view">View Code</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submodule">
+                            <h3 class="submodule-title">04. Array and Function</h3>
+                            <div class="exercises-list">
+                                <div class="exercise-item">
+                                    <span class="exercise-name">📄 Array & Function Exercise</span>
+                                    <div class="exercise-actions">
+                                        <a href="https://github.com/awanstywn/bootcamp-exercise/blob/main/Module%201%20-%20Programming%20Fundamental/04%20Array%20and%20Function/array-function.js" target="_blank" class="btn btn-view">View Code</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submodule">
+                            <h3 class="submodule-title">05. Exercise</h3>
+                            <div class="exercises-list">
+                                <div class="exercise-item">
+                                    <span class="exercise-name">📄 Exercise 1</span>
+                                    <div class="exercise-actions">
+                                        <a href="https://github.com/awanstywn/bootcamp-exercise/blob/main/Module%201%20-%20Programming%20Fundamental/05%20Exercise/20260203-exercise-1.js" target="_blank" class="btn btn-view">View Code</a>
+                                    </div>
+                                </div>
+                                <div class="exercise-item">
+                                    <span class="exercise-name">📄 Exercise 2</span>
+                                    <div class="exercise-actions">
+                                        <a href="https://github.com/awanstywn/bootcamp-exercise/blob/main/Module%201%20-%20Programming%20Fundamental/05%20Exercise/202260203-exercise2.js" target="_blank" class="btn btn-view">View Code</a>
+                                    </div>
+                                </div>
+                                <div class="exercise-item">
+                                    <span class="exercise-name">📄 Exercise 3</span>
+                                    <div class="exercise-actions">
+                                        <a href="https://github.com/awanstywn/bootcamp-exercise/blob/main/Module%201%20-%20Programming%20Fundamental/05%20Exercise/20260203-exercise3.js" target="_blank" class="btn btn-view">View Code</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submodule">
+                            <h3 class="submodule-title">06. Object Oriented Programming</h3>
+                            <div class="exercises-list">
+                                <div class="exercise-item">
+                                    <span class="exercise-name">📄 OOP Exercise</span>
+                                    <div class="exercise-actions">
+                                        <a href="https://github.com/awanstywn/bootcamp-exercise/blob/main/Module%201%20-%20Programming%20Fundamental/06%20Object%20Oriented%20Programming/20260205-exercise-modul6.ts" target="_blank" class="btn btn-view">View Code</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submodule">
+                            <h3 class="submodule-title">07. Algorithm & Data Structure</h3>
+                            <div class="exercises-list">
+                                <div class="exercise-item">
+                                    <span class="exercise-name">📄 Algorithm Exercise</span>
+                                    <div class="exercise-actions">
+                                        <a href="https://github.com/awanstywn/bootcamp-exercise/blob/main/Module%201%20-%20Programming%20Fundamental/07%20Algorithm%20%26%20Data%20Structure/20260210-exercise-algo.ts" target="_blank" class="btn btn-view">View Code</a>
+                                    </div>
+                                </div>
+                                <div class="exercise-item">
+                                    <span class="exercise-name">📄 Data Structure Exercise</span>
+                                    <div class="exercise-actions">
+                                        <a href="https://github.com/awanstywn/bootcamp-exercise/blob/main/Module%201%20-%20Programming%20Fundamental/07%20Algorithm%20%26%20Data%20Structure/20260210-exercise-ds.ts" target="_blank" class="btn btn-view">View Code</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submodule">
+                            <h3 class="submodule-title">08. Advanced JavaScript Concepts</h3>
+                            <div class="exercises-list">
+                                <div class="exercise-item">
+                                    <span class="exercise-name">📄 Advanced JS Exercise</span>
+                                    <div class="exercise-actions">
+                                        <a href="https://github.com/awanstywn/bootcamp-exercise/blob/main/Module%201%20-%20Programming%20Fundamental/08%20Advanced%20JavaScript%20Concepts%20and%20Cross-Language%20Comparisons/20260214-exercise-module8.ts" target="_blank" class="btn btn-view">View Code</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="module-card">
+                    <div class="module-header" onclick="toggleModule('module2')">
+                        <div>
+                            <h2 class="module-title">Module 2: Front End Web Development</h2>
+                            <p class="module-description">Building responsive and interactive web interfaces with HTML, CSS, and modern frontend technologies.</p>
+                            <div class="module-meta">
+                                <span class="status-badge in-progress">🔄 In Progress</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submodules-content" id="module2">
+                        <div class="submodule">
+                            <h3 class="submodule-title">01. Intro to Frontend Development with HTML & CSS</h3>
+                            <div class="exercises-list">
+                                <div class="exercise-item">
+                                    <span class="exercise-name">🌐 User Profile</span>
+                                    <div class="exercise-actions">
+                                        <a href="https://github.com/awanstywn/bootcamp-exercise/blob/main/Module%202%20-%20Front%20End%20Web%20Development/01%20Intro%20to%20Frontend%20Development%20with%20HTML%20%26%20CSS/exercise_1/index.html" target="_blank" class="btn btn-view">View Code</a>
+                                        <a href="Module%202%20-%20Front%20End%20Web%20Development/01%20Intro%20to%20Frontend%20Development%20with%20HTML%20%26%20CSS/exercise_1/index.html" target="_blank" class="btn btn-preview">👁️ Live Preview</a>
+                                    </div>
+                                </div>
+                                <div class="exercise-item">
+                                    <span class="exercise-name">🌐 Shape & Layout</span>
+                                    <div class="exercise-actions">
+                                        <a href="https://github.com/awanstywn/bootcamp-exercise/blob/main/Module%202%20-%20Front%20End%20Web%20Development/01%20Intro%20to%20Frontend%20Development%20with%20HTML%20%26%20CSS/exercise_2/index.html" target="_blank" class="btn btn-view">View Code</a>
+                                        <a href="Module%202%20-%20Front%20End%20Web%20Development/01%20Intro%20to%20Frontend%20Development%20with%20HTML%20%26%20CSS/exercise_2/index.html" target="_blank" class="btn btn-preview">👁️ Live Preview</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submodule">
+                            <h3 class="submodule-title">02. Advanced CSS Techniques</h3>
+                            <div class="exercises-list">
+                                <div class="exercise-item">
+                                    <span class="exercise-name">🌐 Advanced Layout</span>
+                                    <div class="exercise-actions">
+                                        <a href="https://github.com/awanstywn/bootcamp-exercise/blob/main/Module%202%20-%20Front%20End%20Web%20Development/02%20Advanced%20CSS%20Techniques/exercise_1/index.html" target="_blank" class="btn btn-view">View Code</a>
+                                        <a href="Module%202%20-%20Front%20End%20Web%20Development/02%20Advanced%20CSS%20Techniques/exercise_1/index.html" target="_blank" class="btn btn-preview">👁️ Live Preview</a>
+                                    </div>
+                                </div>
+                                <div class="exercise-item">
+                                    <span class="exercise-name">🌐 User Grid</span>
+                                    <div class="exercise-actions">
+                                        <a href="https://github.com/awanstywn/bootcamp-exercise/blob/main/Module%202%20-%20Front%20End%20Web%20Development/02%20Advanced%20CSS%20Techniques/exercise_2/index.html" target="_blank" class="btn btn-view">View Code</a>
+                                        <a href="Module%202%20-%20Front%20End%20Web%20Development/02%20Advanced%20CSS%20Techniques/exercise_2/index.html" target="_blank" class="btn btn-preview">👁️ Live Preview</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 3 - Coming Soon -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div>
+                            <h2 class="module-title">Module 3: Backend Development</h2>
+                            <p class="module-description">Server-side programming, APIs, databases, and server management.</p>
+                            <div class="module-meta">
+                                <span class="status-badge coming-soon">🔜 Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 4 - Coming Soon -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div>
+                            <h2 class="module-title">Module 4: Framework & Libraries</h2>
+                            <p class="module-description">Modern frameworks like React, Vue, Angular and state management.</p>
+                            <div class="module-meta">
+                                <span class="status-badge coming-soon">🔜 Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 5 - Coming Soon -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div>
+                            <h2 class="module-title">Module 5: Deployment & DevOps</h2>
+                            <p class="module-description">Cloud deployment, CI/CD, Docker, and infrastructure.</p>
+                            <div class="module-meta">
+                                <span class="status-badge coming-soon">🔜 Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleModule(moduleId) {
+            const content = document.getElementById(moduleId);
+            if (content) {
+                content.classList.toggle('active');
+            }
+        }
+    </script>
+</body>
+</html>
