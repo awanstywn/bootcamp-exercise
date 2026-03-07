@@ -30,6 +30,7 @@ Foundation concepts in programming including variables, data types, control flow
 | Sub Module | Exercise Files | Status |
 |------------|----------------|--------|
 | Intro to Programming, Variable, Data Types | `21012026-Aries Setiawan.js` | ✅ Completed |
+| Intro to Git, Github & AI tools | `github-link.txt`, `hello.js`, `intro.js`, `qodo-prompt-hello.md`, `qodo-prompt-intro.md` | ✅ Completed |
 | Conditional and Loop Statements | `20260127-app.js` | ✅ Completed |
 | Array and Function | `array-function.js` | ✅ Completed |
 | Exercise | `20260203-exercise-1.js`, `202260203-exercise2.js`, `20260203-exercise3.js` | ✅ Completed |
@@ -51,9 +52,10 @@ Building responsive and interactive web interfaces.
 This repository will be continuously updated throughout the bootcamp until completion.
 
 #### Upcoming Modules:
-- 🔜 **Module 3: Backend Development** - Server-side programming with Node.js, Express, RESTful APIs, databases (MongoDB, PostgreSQL), authentication & authorization
-- 🔜 **Module 4: Frontend Frameworks** - Modern frameworks and libraries (React.js, state management with Redux/Context, component lifecycle, hooks, routing)
-- 🔜 **Module 5: Fullstack Projects** - Integration of frontend and backend, real-world applications, best practices, project architecture, and deployment
+- 🔜 **Module 3: Back End Development** - Server-side programming, APIs, databases, and server management
+- 🔜 **Module 4: AI-Powered Software Development** - Building intelligent applications with AI/ML integration
+- 🔜 **Module 5: Advanced Software Development** - Advanced patterns, scalability, and enterprise-level development
+- 🔜 **Module 6: Software Delivery and Reliability** - DevOps, CI/CD, testing, deployment strategies, and monitoring
 
 ## 🎯 Learning Journey
 
