@@ -1,0 +1,241 @@
+/**
+ * APP.CSS - Global Styles and Responsive Design
+ * 
+ * This file manages:
+ * 1. Global app container styling
+ * 2. Responsive breakpoints for mobile, tablet, and desktop
+ * 3. Dark/Light mode background colors
+ * 4. Banner positioning on mobile devices
+ * 5. Dynamic font sizing using clamp()
+ * 
+ * Responsive Breakpoints:
+ *   - 768px: Mobile/tablet transition point
+ *   - 640px: Small tablet/landscape mobile
+ *   - 480px: Portrait mobile phones
+ *   - 360px: Small phone screens
+ */
+
+/* Import Josefin Sans font from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap");
+
+/* Root container - fills entire viewport */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+/* ====== LEGACY STYLES (Not currently used in app) ====== */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+/* ====== END LEGACY STYLES ====== */
+
+/* ====== FILTER BAR LAYOUT TOGGLE ====== */
+/* Desktop Layout - Show filter bar container as flex (single row) */
+.todo-filter-bar-container {
+  display: flex !important;
+}
+
+/* Mobile Layout - Hide mobile filter bar by default */
+.todo-filter-bar-mobile {
+  display: none !important;
+}
+/* ====== END FILTER BAR LAYOUT TOGGLE ====== */
+
+/* ====== RESPONSIVE DESIGN - MEDIA QUERIES ====== */
+/* Tablet/Mobile view (768px and below) - Adjust spacing */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 0 !important;
+  }
+
+  .header {
+    padding: 20px 16px !important;
+  }
+
+  .todo-input,
+  .todo-container {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Small tablet/landscape mobile (640px and below) - Reduce header size */
+@media (max-width: 640px) {
+  .header h1 {
+    font-size: clamp(28px, 8vw, 40px) !important;
+    letter-spacing: 8px !important;
+  }
+
+  .header {
+    gap: 12px !important;
+  }
+
+  .theme-toggle-btn {
+    width: 28px !important;
+    height: 28px !important;
+  }
+}
+
+/* Portrait mobile (480px and below) - Further reduce sizes */
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: clamp(24px, 7vw, 36px) !important;
+    letter-spacing: 6px !important;
+  }
+
+  .todo-container {
+    border-radius: 4px !important;
+  }
+}
+
+/* Small phone screens (360px and below) - Minimal sizes */
+@media (max-width: 360px) {
+  .header h1 {
+    font-size: 20px !important;
+    letter-spacing: 4px !important;
+  }
+
+  .theme-toggle-btn {
+    width: 24px !important;
+    height: 24px !important;
+  }
+}
+
+/* ====== MOBILE LAYOUT OPTIMIZATION (768px and below) ====== */
+@media (max-width: 768px) {
+  /* Switch filter bar layout: hide desktop, show mobile */
+  .todo-filter-bar-container {
+    display: none !important;
+  }
+
+  .todo-filter-bar-mobile {
+    display: flex !important;
+  }
+
+  /* ====== FULL SCREEN BACKGROUND & BANNER SETUP ====== */
+
+  html,
+  body {
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+  }
+
+  /* Background color relative to screen - only for dark mode */
+  body {
+    background-color: transparent !important;
+  }
+
+  /* Dark mode body background */
+  body.dark-mode {
+    background-color: #171823 !important;
+  }
+
+  /* Light mode body background */
+  body.light-mode {
+    background-color: #ffffff !important;
+  }
+
+  /* Make app container transparent and overlay content on banner */
+  .app-container {
+    min-height: 100vh !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 24px 48px 24px !important;
+    box-sizing: border-box !important;
+    background-color: transparent !important;
+    position: relative !important;
+  }
+
+  /* Make banner absolute to screen on mobile */
+  .banner-area {
+    position: absolute !important;
+    width: 100vw !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+    top: 0 !important;
+    z-index: 0 !important;
+  }
+
+  /* Make banner background image cover full horizontal screen */
+  .banner-area > div {
+    width: 100vw !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+  }
+
+  .banner-area > div > div {
+    width: 100vw !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+  }
+
+  /* Position content relative to banner/background */
+  .relative.z-10 {
+    position: relative !important;
+    z-index: 10 !important;
+    margin-top: 48px !important;
+  }
+
+  .header {
+    margin-bottom: 60px !important;
+  }
+
+  .todo-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 3% !important;
+  }
+
+  .todo-input {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 16px !important;
+  }
+
+  .drag-hint {
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+  }
+}
+/* ====== END MOBILE LAYOUT OPTIMIZATION ====== */

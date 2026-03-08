@@ -16,42 +16,48 @@ Bootcamp Exercise/
 │       ├── Exercise File/Folder
 └── README.md
 ```
+
 ## 📖 How to Navigate
 
 1. **Browse by Module**: Each main module folder contains all related submodules
 2. **Exercise Folder**: Inside each submodule, exercises are organized in separate folders
 
-
-
 ## 📖 Modules Overview
+
 ### Module 1 - Programming Fundamental
+
 Foundation concepts in programming including variables, data types, control flow, functions, OOP, algorithms, and data structures.
 
-| Sub Module | Exercise Files | Status |
-|------------|----------------|--------|
-| Intro to Programming, Variable, Data Types | `21012026-Aries Setiawan.js` | ✅ Completed |
-| Intro to Git, Github & AI tools | `github-link.txt`, `hello.js`, `intro.js`, `qodo-prompt-hello.md`, `qodo-prompt-intro.md` | ✅ Completed |
-| Conditional and Loop Statements | `20260127-app.js` | ✅ Completed |
-| Array and Function | `array-function.js` | ✅ Completed |
-| Exercise | `20260203-exercise-1.js`, `202260203-exercise2.js`, `20260203-exercise3.js` | ✅ Completed |
-| Object Oriented Programming | `20260205-exercise-modul6.ts` | ✅ Completed |
-| Algorithm & Data Structure | `20260210-exercise-algo.ts`, `20260210-exercise-ds.ts` | ✅ Completed |
-| Advanced JavaScript Concepts | `20260214-exercise-module8.ts` | ✅ Completed |
+| Sub Module                                 | Exercise Files                                                                            | Status       |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------- | ------------ |
+| Intro to Programming, Variable, Data Types | `21012026-Aries Setiawan.js`                                                              | ✅ Completed |
+| Intro to Git, Github & AI tools            | `github-link.txt`, `hello.js`, `intro.js`, `qodo-prompt-hello.md`, `qodo-prompt-intro.md` | ✅ Completed |
+| Conditional and Loop Statements            | `20260127-app.js`                                                                         | ✅ Completed |
+| Array and Function                         | `array-function.js`                                                                       | ✅ Completed |
+| Exercise                                   | `20260203-exercise-1.js`, `202260203-exercise2.js`, `20260203-exercise3.js`               | ✅ Completed |
+| Object Oriented Programming                | `20260205-exercise-modul6.ts`                                                             | ✅ Completed |
+| Algorithm & Data Structure                 | `20260210-exercise-algo.ts`, `20260210-exercise-ds.ts`                                    | ✅ Completed |
+| Advanced JavaScript Concepts               | `20260214-exercise-module8.ts`                                                            | ✅ Completed |
 
 ### Module 2 - Front End Web Development
+
 Building responsive and interactive web interfaces.
 
-| Sub Module | Exercise Files | Status |
-|------------|----------------|--------|
+| Sub Module                                    | Exercise Files                                   | Status       |
+| --------------------------------------------- | ------------------------------------------------ | ------------ |
 | Intro to Frontend Development with HTML & CSS | `exercise_1/index.html`, `exercise_2/index.html` | ✅ Completed |
-| Advanced CSS Techniques | `exercise_1/index.html`, `exercise_2/index.html` | ✅ Completed |
+| Advanced CSS Techniques                       | `exercise_1/index.html`, `exercise_2/index.html` | ✅ Completed |
+| Intro to React                                | `profile-website/` (React + Vite project)        | ✅ Completed |
+| Using CSS Framework                           | `todo-app/` (React + CSS Framework project)      | ✅ Completed |
 
-**Overall Module Status:** 🔄 In Progress
+**Overall Module Status:** ✅ Completed
 
 ### 🔄 More modules coming soon...
+
 This repository will be continuously updated throughout the bootcamp until completion.
 
 #### Upcoming Modules:
+
 - 🔜 **Module 3: Back End Development** - Server-side programming, APIs, databases, and server management
 - 🔜 **Module 4: AI-Powered Software Development** - Building intelligent applications with AI/ML integration
 - 🔜 **Module 5: Advanced Software Development** - Advanced patterns, scalability, and enterprise-level development
@@ -60,21 +66,23 @@ This repository will be continuously updated throughout the bootcamp until compl
 ## 🎯 Learning Journey
 
 ### Current Focus
+
 - Frontend Web Development fundamentals
-
-
 
 ## 🛠️ Tech Stack
 
 ### Languages
+
 - ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 - ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
 
 ### Frontend
+
 - ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 - ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
 
 ### Tools
+
 - Git & GitHub
 - VS Code
 - Modern Web Browsers

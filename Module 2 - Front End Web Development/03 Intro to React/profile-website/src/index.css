@@ -1,0 +1,20 @@
+/**
+ * index.css - Tailwind CSS Import
+ *
+ * This file imports Tailwind CSS, which provides utility classes for styling.
+ *
+ * Tailwind CSS is a utility-first CSS framework that allows us to:
+ * - Style components directly in JSX using class names
+ * - Create responsive designs with breakpoint prefixes (sm:, md:, lg:)
+ * - Apply consistent spacing, colors, and typography
+ * - Build responsive layouts without writing custom CSS
+ *
+ * Example Tailwind classes used in this project:
+ * - Flexbox: flex, flex-col, items-center, justify-center
+ * - Grid: grid, grid-cols-2, gap-4
+ * - Spacing: p-4 (padding), m-4 (margin), gap-4 (gap between grid items)
+ * - Colors: bg-gray-900 (background), text-white (text color)
+ * - Responsive: px-4 (padding on all screens), md:px-8 (padding on medium screens+)
+ */
+
+@import "tailwindcss"

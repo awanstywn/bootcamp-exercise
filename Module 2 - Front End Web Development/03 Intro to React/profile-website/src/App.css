@@ -1,0 +1,53 @@
+/**
+ * App.css - Global Styles and Layout
+ *
+ * This file contains global CSS for the entire application:
+ * - Root element styling (full-width, no margins/padding)
+ * - CSS reset for consistent box-sizing
+ * - Body styling with font family definitions
+ * - Code element styling
+ *
+ * Note: Most styling is handled by Tailwind CSS utility classes
+ * This file is only for global resets and base styles
+ */
+
+/* Root Element */
+#root {
+  /* Full width container */
+  width: 100%;
+  /* Minimum height ensures content fills viewport */
+  min-height: 100vh;
+  /* Remove default margins */
+  margin: 0;
+  /* Remove default padding */
+  padding: 0;
+}
+
+/* CSS Reset for Box Model */
+* {
+  /* Include padding and border in element's total width/height */
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  /* Remove default margins */
+  margin: 0;
+  /* Remove default padding */
+  padding: 0;
+  /* Font stack for consistent cross-platform rendering */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  /* Smooth font rendering on macOS */
+  -webkit-font-smoothing: antialiased;
+  /* Smooth font rendering on other platforms */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Code Element Styling */
+code {
+  /* Monospace font for code display */
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
