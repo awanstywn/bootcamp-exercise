@@ -24,11 +24,20 @@ export function ToDoList({ isDarkMode = true }: ToDoListProps) {
     <div className="flex flex-col items-center" style={{ gap: "0" }}>
       {/* Sample todo items - displayed with no gap between them */}
       <ToDoItem
+        id="sample-1"
         isDarkMode={isDarkMode}
         text="Complete online JavaScript course"
       />
-      <ToDoItem isDarkMode={isDarkMode} text="Jogging for 20 minutes" />
-      <ToDoItem isDarkMode={isDarkMode} text="Finish the assignment" />
+      <ToDoItem
+        id="sample-2"
+        isDarkMode={isDarkMode}
+        text="Jogging for 20 minutes"
+      />
+      <ToDoItem
+        id="sample-3"
+        isDarkMode={isDarkMode}
+        text="Finish the assignment"
+      />
     </div>
   );
 }
