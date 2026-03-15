@@ -49,6 +49,8 @@ Building responsive and interactive web interfaces.
 | Advanced CSS Techniques                       | `exercise_1/index.html`, `exercise_2/index.html` | ✅ Completed |
 | Intro to React                                | `profile-website/` (React + Vite project)        | ✅ Completed |
 | Using CSS Framework                           | `todo-app/` (React + CSS Framework project)      | ✅ Completed |
+| React Hooks                                   | `todo-app-1.2/` (React Hooks project)            | ✅ Completed |
+| Exercise                                      | `todo-app-1.3/` (React Exercise project)         | ✅ Completed |
 
 **Overall Module Status:** ✅ Completed
 
