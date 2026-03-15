@@ -1,0 +1,44 @@
+/* ========================================
+   IMPORTS
+   ======================================== */
+
+/* Import Tailwind CSS framework - enables utility classes like flex, p-4, text-center */
+@import "tailwindcss";
+
+/* Import Josefin Sans font from Google Fonts - bold weight (700) */
+/* display=swap shows fallback text immediately, then swaps when font loads */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
+
+/* ========================================
+   GLOBAL RESET
+   ======================================== */
+
+/* Universal selector (*) targets ALL elements on the page */
+* {
+  margin: 0;              /* Remove default browser margins */
+  padding: 0;             /* Remove default browser padding */
+  box-sizing: border-box; /* Include padding/border in element's width/height */
+}
+
+/* ========================================
+   HTML & BODY
+   ======================================== */
+
+html, body {
+  width: 100%;            /* Take full width of viewport */
+  min-height: 100%;       /* At minimum, take 100% of viewport height */
+  overflow-x: hidden;     /* Hide horizontal scrollbar (prevent side-scrolling) */
+  margin: 0;              /* Remove default margins (double-reset for safety) */
+  padding: 0;             /* Remove default padding (double-reset for safety) */
+}
+
+/* ========================================
+   ROOT CONTAINER (where React app mounts)
+   ======================================== */
+
+#root {
+  width: 100%;            /* Take full width of parent */
+  min-height: 100vh;      /* At minimum, take 100% of viewport height (vh = viewport height) */
+  margin: 0;              /* Remove default margins */
+  padding: 0;             /* Remove default padding */
+}

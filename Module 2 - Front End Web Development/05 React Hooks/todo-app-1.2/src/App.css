@@ -1,0 +1,298 @@
+/**
+ * ========================================
+ * APP.CSS - Global Styles and Responsive Design
+ * ========================================
+ *
+ * This file manages:
+ * 1. Global app container styling
+ * 2. Responsive breakpoints for mobile, tablet, and desktop
+ * 3. Dark/Light mode background colors
+ * 4. Banner positioning on mobile devices
+ * 5. Dynamic font sizing using clamp()
+ *
+ * Responsive Breakpoints:
+ *   - 768px: Mobile/tablet transition point
+ *   - 640px: Small tablet/landscape mobile
+ *   - 480px: Portrait mobile phones
+ *   - 360px: Small phone screens
+ */
+
+/* ========================================
+ * IMPORTS
+ * ======================================== */
+
+/* Import Josefin Sans font from Google Fonts with multiple weights */
+/* wght@400;500;600;700 = regular, medium, semi-bold, bold */
+/* display=swap = show fallback text immediately, swap when font loads */
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap");
+
+/* ========================================
+ * ROOT CONTAINER
+ * ======================================== */
+
+/* Root container where React app mounts - fills entire viewport */
+#root {
+  width: 100%;                       /* Take full width of viewport */
+  min-height: 100vh;                 /* At minimum, 100% of viewport height (vh = viewport height) */
+  margin: 0;                         /* Remove default margins */
+  padding: 0;                        /* Remove default padding */
+  font-family: "Josefin Sans", sans-serif; /* Apply Josefin Sans font to entire app */
+}
+
+/* ========================================
+ * LEGACY STYLES (Not currently used in app)
+ * ========================================
+ * These are leftover from Vite's default template.
+ * Can be removed if not needed in your project.
+ * ======================================== */
+
+/* Logo styling with hover effect */
+.logo {
+  height: 6em;                      /* Logo height (6x the font size) */
+  padding: 1.5em;                   /* Spacing around the logo */
+  will-change: filter;              /* Hint to browser that filter property will change (optimizes performance) */
+  transition: filter 300ms;         /* Smooth transition for filter changes over 300ms */
+}
+
+/* Logo hover state - adds colored glow/shadow effect */
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa); /* Add drop shadow: x-offset, y-offset, blur, color */
+}
+
+/* React logo specific hover effect - different color */
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa); /* Blue glow for React logo (#61dafb) */
+}
+
+/* Animation definition - spinning rotation */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);        /* Start rotation at 0 degrees */
+  }
+  to {
+    transform: rotate(360deg);      /* End rotation at 360 degrees (full circle) */
+  }
+}
+
+/* Only animate if user prefers motion (respects accessibility settings) */
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear; /* Spin infinitely, every 20 seconds, at constant speed */
+  }
+}
+
+/* Card component styling */
+.card {
+  padding: 2em;                     /* Add padding equal to 2x font size */
+}
+
+/* Documentation link styling */
+.read-the-docs {
+  color: #888;                      /* Gray color for less prominent text */
+}
+/* ====== END LEGACY STYLES ====== */
+
+/* ========================================
+ * FILTER BAR LAYOUT TOGGLE
+ * ========================================
+ * Controls which filter bar layout is shown:
+ * - Desktop: Horizontal filter bar (single row)
+ * - Mobile: Vertical filter bar (stacked)
+ * ======================================== */
+
+/* Desktop Layout - Show filter bar as horizontal flexbox */
+.todo-filter-bar-container {
+  display: flex !important;         /* Show items in a row (flexbox) */
+}
+
+/* Mobile Layout - Hide mobile filter bar by default (shown on small screens) */
+.todo-filter-bar-mobile {
+  display: none !important;         /* Hide this element completely */
+}
+/* ====== END FILTER BAR LAYOUT TOGGLE ====== */
+
+/* ========================================
+ * RESPONSIVE DESIGN - MEDIA QUERIES
+ * ========================================
+ * Media queries apply styles based on screen size.
+ * Breakpoints go from largest to smallest (mobile-first approach).
+ * ======================================== */
+
+/* Tablet/Mobile view (768px and below) - Adjust spacing */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 0 !important;          /* Remove padding from app container */
+  }
+
+  .header {
+    padding: 20px 16px !important;   /* Reduce header padding (top/bottom: 20px, left/right: 16px) */
+  }
+
+  .todo-input,
+  .todo-container {
+    margin-left: auto !important;    /* Center horizontally by setting auto left margin */
+    margin-right: auto !important;   /* Center horizontally by setting auto right margin */
+  }
+}
+
+/* Small tablet/landscape mobile (640px and below) - Reduce header size */
+@media (max-width: 640px) {
+  .header h1 {
+    font-size: clamp(28px, 8vw, 40px) !important; /* Dynamic font size: min=28px, preferred=8vw, max=40px */
+    letter-spacing: 8px !important;  /* Space between letters = 8px */
+  }
+
+  .header {
+    gap: 12px !important;            /* Space between flex items = 12px */
+  }
+
+  .theme-toggle-btn {
+    width: 28px !important;          /* Button width = 28px */
+    height: 28px !important;         /* Button height = 28px */
+  }
+}
+
+/* Portrait mobile (480px and below) - Further reduce sizes */
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: clamp(24px, 7vw, 36px) !important; /* Smaller dynamic font: min=24px, preferred=7vw, max=36px */
+    letter-spacing: 6px !important;  /* Reduce letter spacing to 6px */
+  }
+
+  .todo-container {
+    border-radius: 4px !important;   /* Smaller rounded corners = 4px */
+  }
+}
+
+/* Small phone screens (360px and below) - Minimal sizes */
+@media (max-width: 360px) {
+  .header h1 {
+    font-size: 20px !important;      /* Fixed small font size = 20px */
+    letter-spacing: 4px !important;  /* Minimal letter spacing = 4px */
+  }
+
+  .theme-toggle-btn {
+    width: 24px !important;          /* Smaller button width = 24px */
+    height: 24px !important;         /* Smaller button height = 24px */
+  }
+}
+
+/* ========================================
+ * MOBILE LAYOUT OPTIMIZATION (768px and below)
+ * ========================================
+ * This section handles the complex mobile layout:
+ * - Switches between desktop/mobile filter bars
+ * - Sets up full-screen backgrounds for dark/light modes
+ * - Positions banner images absolutely
+ * - Ensures content overlays correctly
+ * ======================================== */
+
+@media (max-width: 768px) {
+  /* ----- FILTER BAR LAYOUT SWITCH ----- */
+  /* Switch filter bar layout: hide desktop version, show mobile version */
+  .todo-filter-bar-container {
+    display: none !important;        /* Hide desktop filter bar */
+  }
+
+  .todo-filter-bar-mobile {
+    display: flex !important;        /* Show mobile filter bar (stacked vertically) */
+  }
+
+  /* ----- FULL SCREEN BACKGROUND & BANNER SETUP ----- */
+
+  /* Reset html and body for full-screen layout */
+  html,
+  body {
+    min-height: 100vh !important;    /* Minimum height = 100% of viewport */
+    margin: 0 !important;            /* Remove all margins */
+    padding: 0 !important;           /* Remove all padding */
+    position: relative !important;   /* Enable positioning context for children */
+  }
+
+  /* Default body background - transparent to show background color */
+  body {
+    background-color: transparent !important; /* Transparent allows body classes to show through */
+  }
+
+  /* Dark mode body background - dark gray */
+  body.dark-mode {
+    background-color: #171823 !important; /* Dark gray background (#171823) */
+  }
+
+  /* Light mode body background - white */
+  body.light-mode {
+    background-color: #ffffff !important; /* White background (#ffffff) */
+  }
+
+  /* Make app container transparent to overlay on banner/background */
+  .app-container {
+    min-height: 100vh !important;    /* Full viewport height minimum */
+    width: 100% !important;          /* Full width */
+    max-width: 100% !important;      /* No maximum width constraint */
+    padding: 0 24px 48px 24px !important; /* Padding: top=0, right=24px, bottom=48px, left=24px */
+    box-sizing: border-box !important; /* Include padding in width calculation */
+    background-color: transparent !important; /* Transparent to show banner underneath */
+    position: relative !important;   /* Enable positioning for children */
+  }
+
+  /* Make banner absolutely positioned to screen on mobile */
+  /* This allows banner to extend beyond app container edges */
+  .banner-area {
+    position: absolute !important;   /* Position relative to nearest positioned ancestor (body) */
+    width: 100vw !important;         /* Full viewport width (vw = viewport width) */
+    left: 50% !important;            /* Start from center */
+    transform: translateX(-50%) !important; /* Shift left by 50% of own width (centers it) */
+    right: auto !important;          /* Disable right positioning */
+    top: 0 !important;               /* Position at top of screen */
+    z-index: 0 !important;           /* Layer behind content (lower z-index) */
+  }
+
+  /* Make banner background div cover full horizontal screen */
+  .banner-area > div {
+    width: 100vw !important;         /* Full viewport width */
+    left: 50% !important;            /* Start from center */
+    transform: translateX(-50%) !important; /* Center horizontally */
+    right: auto !important;          /* Disable right positioning */
+  }
+
+  /* Make banner nested div cover full horizontal screen */
+  .banner-area > div > div {
+    width: 100vw !important;         /* Full viewport width */
+    left: 50% !important;            /* Start from center */
+    transform: translateX(-50%) !important; /* Center horizontally */
+    right: auto !important;          /* Disable right positioning */
+  }
+
+  /* Position content relative to banner/background */
+  .relative.z-10 {
+    position: relative !important;   /* Enable positioning context */
+    z-index: 10 !important;          /* Layer above banner (higher z-index) */
+    margin-top: 48px !important;     /* Space from top = 48px */
+  }
+
+  /* Add space below header on mobile */
+  .header {
+    margin-bottom: 60px !important;  /* Space below header = 60px */
+  }
+
+  /* Todo container full width on mobile */
+  .todo-container {
+    width: 100% !important;          /* Full width */
+    max-width: 100% !important;      /* No max width constraint */
+    margin-top: 3% !important;       /* Space from top = 3% of viewport */
+  }
+
+  /* Todo input full width on mobile */
+  .todo-input {
+    width: 100% !important;          /* Full width */
+    max-width: 100% !important;      /* No max width constraint */
+    margin-bottom: 16px !important;  /* Space below input = 16px */
+  }
+
+  /* Drag hint text spacing */
+  .drag-hint {
+    margin-top: 5% !important;       /* Space above = 5% of viewport */
+    margin-bottom: 5% !important;    /* Space below = 5% of viewport */
+  }
+}
+/* ====== END MOBILE LAYOUT OPTIMIZATION ====== */

@@ -1,0 +1,34 @@
+/* index.css — Tailwind CSS v4 setup + global reset */
+
+/* Tailwind CSS framework (enables utility classes like flex, p-4, text-center) */
+@import "tailwindcss";
+
+/* Dark mode: use "class" strategy — AppShell toggles .dark class based on store */
+@custom-variant dark (&:is(.dark *));
+
+/* Josefin Sans font (bold weight for headings) */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
+
+/* Global reset: remove default margins/padding, use border-box sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Full-width, no-scroll body */
+html, body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* React mount point: full viewport */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
