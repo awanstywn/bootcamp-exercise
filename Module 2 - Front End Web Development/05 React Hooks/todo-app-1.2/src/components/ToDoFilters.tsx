@@ -612,7 +612,7 @@ export function ToDoFilters({
            *     display: flex;
            *   }
            */
-          display: "none",
+          visibility: "hidden",
         }}
       >
         {/* ========================================
