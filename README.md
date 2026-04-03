@@ -51,8 +51,9 @@ Building responsive and interactive web interfaces.
 | Using CSS Framework                           | `todo-app/` (React + CSS Framework project)      | ✅ Completed |
 | React Hooks                                   | `todo-app-1.2/` (React Hooks project)            | ✅ Completed |
 | Exercise                                      | `todo-app-1.3/` (React Exercise project)         | ✅ Completed |
+| Application Data Flow and State Management    | `todo-app-1.4/`, `Exercise/test.js`, `Exercise/test.ts` | 🔄 In Progress |
 
-**Overall Module Status:** ✅ Completed
+**Overall Module Status:** 🔄 In Progress
 
 ### 🔄 More modules coming soon...
 
