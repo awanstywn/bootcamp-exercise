@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/bootcamp-exercise/demos/blog-app-1.5-serverless/sw.js', { scope: '/bootcamp-exercise/demos/blog-app-1.5-serverless/' })})}
