@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SPA Redirect | Bootcamp Exercise</title>
+    <script type="text/javascript">
+      /**
+       * GitHub Pages SPA Routing Workaround
+       * 
+       * When a user visits a deep link (e.g., /demos/todo-app-1.5/signin), 
+       * GitHub Pages returns a 404 because it's a static host.
+       * This script intercepts that 404 and redirects back to the 
+       * appropriate app's index.html with the path in a query string.
+       */
+      (function() {
+        var l = window.location;
+        var segments = l.pathname.split('/');
+        
+        // Structure: /bootcamp-exercise/demos/[app-name]/[route]
+        // segments: ["", "bootcamp-exercise", "demos", "todo-app-1.5", "signin"]
+        
+        var isDemoPath = segments[2] === 'demos' && segments[3];
+        
+        if (isDemoPath) {
+          var repoName = segments[1];
+          var demoName = segments[3];
+          var appPath = '/' + repoName + '/demos/' + demoName + '/';
+          
+          // Everything after the app name is the internal route
+          var internalRoute = '/' + segments.slice(4).join('/');
+          
+          // Construct the redirect URL
+          // Format: /repo/demos/app/?p=/route
+          var redirectUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+            appPath + '?p=' + internalRoute.replace(/&/g, '~and~') +
+            (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+            l.hash;
+          
+          l.replace(redirectUrl);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <h1>Redirecting...</h1>
+    <p>Please wait while we redirect you to the correct page.</p>
+  </body>
+</html>
