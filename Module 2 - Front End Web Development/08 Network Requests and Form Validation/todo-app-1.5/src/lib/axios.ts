@@ -36,7 +36,7 @@ backendlessAPI.interceptors.response.use(
     if (!isAuthEndpoint && (error.response?.status === 401 || error.response?.status === 403)) {
       useAuthStore.getState().clearError();
       useAuthStore.setState({ user: null, userToken: null, isLoggedIn: false });
-      window.location.href = '/signin';
+      window.location.href = `${import.meta.env.BASE_URL}signin`;
     }
     return Promise.reject(error);
   }
