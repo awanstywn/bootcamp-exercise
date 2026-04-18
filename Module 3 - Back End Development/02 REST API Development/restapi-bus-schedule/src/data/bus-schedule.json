@@ -1,0 +1,58 @@
+{
+  "routes": [
+    {
+      "id": "JKT-SUB",
+      "origin": "JKT",
+      "destination": "SUB",
+      "departureDate": "2026-04-30T10:00:00Z",
+      "arrivalDate": "2026-05-01T08:00:00Z",
+      "quota": 40,
+      "active": true
+    },
+    {
+      "id": "JKT-BDG",
+      "origin": "JKT",
+      "destination": "BDG",
+      "departureDate": "2026-05-01T09:00:00Z",
+      "arrivalDate": "2026-05-01T12:00:00Z",
+      "quota": 30,
+      "active": true
+    },
+    {
+      "id": "BDG-SUB",
+      "origin": "BDG",
+      "destination": "SUB",
+      "departureDate": "2026-05-01T14:00:00Z",
+      "arrivalDate": "2026-05-02T02:00:00Z",
+      "quota": 35,
+      "active": true
+    },
+    {
+      "id": "SUB-DPS",
+      "origin": "SUB",
+      "destination": "DPS",
+      "departureDate": "2026-05-02T08:00:00Z",
+      "arrivalDate": "2026-05-03T06:00:00Z",
+      "quota": 25,
+      "active": true
+    },
+    {
+      "id": "JKT-SBY",
+      "origin": "JKT",
+      "destination": "SBY",
+      "departureDate": "2026-04-30T15:00:00Z",
+      "arrivalDate": "2026-05-01T12:00:00Z",
+      "quota": 45,
+      "active": false
+    },
+    {
+      "id": "YOG-SUB",
+      "origin": "YOG",
+      "destination": "SUB",
+      "departureDate": "2026-05-01T20:00:00Z",
+      "arrivalDate": "2026-05-02T04:00:00Z",
+      "quota": 40,
+      "active": true
+    }
+  ]
+}

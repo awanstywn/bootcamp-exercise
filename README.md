@@ -51,7 +51,19 @@ Building responsive and interactive web interfaces.
 | Using CSS Framework                           | `todo-app/` (React + CSS Framework project)      | ✅ Completed |
 | React Hooks                                   | `todo-app-1.2/` (React Hooks project)            | ✅ Completed |
 | Exercise                                      | `todo-app-1.3/` (React Exercise project)         | ✅ Completed |
-| Application Data Flow and State Management    | `todo-app-1.4/`, `Exercise/test.js`, `Exercise/test.ts` | 🔄 In Progress |
+| Application Data Flow and State Management    | `todo-app-1.4/`, `Exercise/test.js`, `Exercise/test.ts` | ✅ Completed |
+| Network Requests and Form Validation          | `todo-app-1.5/`                                         | 🔄 In Progress |
+
+**Overall Module Status:** 🔄 In Progress
+
+### Module 3 - Back End Development
+
+Server-side programming, APIs, databases, and server management.
+
+| Sub Module                                | Exercise Files                                      | Status         |
+| ----------------------------------------- | --------------------------------------------------- | -------------- |
+| Intro to Backend Development with Nodejs  | `express-todos/`, `redirection-exercise/`           | ✅ Completed   |
+| REST API Development                      | `restapi-bus-schedule/`                             | 🔄 In Progress |
 
 **Overall Module Status:** 🔄 In Progress
 
@@ -61,7 +73,6 @@ This repository will be continuously updated throughout the bootcamp until compl
 
 #### Upcoming Modules:
 
-- 🔜 **Module 3: Back End Development** - Server-side programming, APIs, databases, and server management
 - 🔜 **Module 4: AI-Powered Software Development** - Building intelligent applications with AI/ML integration
 - 🔜 **Module 5: Advanced Software Development** - Advanced patterns, scalability, and enterprise-level development
 - 🔜 **Module 6: Software Delivery and Reliability** - DevOps, CI/CD, testing, deployment strategies, and monitoring
