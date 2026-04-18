@@ -52,9 +52,9 @@ Building responsive and interactive web interfaces.
 | React Hooks                                   | `todo-app-1.2/` (React Hooks project)            | ✅ Completed |
 | Exercise                                      | `todo-app-1.3/` (React Exercise project)         | ✅ Completed |
 | Application Data Flow and State Management    | `todo-app-1.4/`, `Exercise/test.js`, `Exercise/test.ts` | ✅ Completed |
-| Network Requests and Form Validation          | `todo-app-1.5/`                                         | 🔄 In Progress |
+| Network Requests and Form Validation          | `todo-app-1.5/`                                         | ✅ Completed   |
 
-**Overall Module Status:** 🔄 In Progress
+**Overall Module Status:** ✅ Completed
 
 ### Module 3 - Back End Development
 
@@ -63,7 +63,7 @@ Server-side programming, APIs, databases, and server management.
 | Sub Module                                | Exercise Files                                      | Status         |
 | ----------------------------------------- | --------------------------------------------------- | -------------- |
 | Intro to Backend Development with Nodejs  | `express-todos/`, `redirection-exercise/`           | ✅ Completed   |
-| REST API Development                      | `restapi-bus-schedule/`                             | 🔄 In Progress |
+| REST API Development                      | `restapi-bus-schedule/`                             | ✅ Completed   |
 
 **Overall Module Status:** 🔄 In Progress
 
