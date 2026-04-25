@@ -1,0 +1,28 @@
+# ═══════════════════════════════════════
+# Root .gitignore — Todo App v2.0
+# ═══════════════════════════════════════
+
+# Dependencies (each sub-project has its own node_modules)
+node_modules/
+
+# Build outputs
+dist/
+
+# Environment variables (DO NOT commit credentials)
+.env
+
+# Template env can be committed
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+

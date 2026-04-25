@@ -1,0 +1,267 @@
+/* index.css — Tailwind CSS v4 setup + global reset */
+
+/* Tailwind CSS framework (enables utility classes like flex, p-4, text-center) */
+@import "tailwindcss";
+
+/* Dark mode: use "class" strategy — AppShell toggles .dark class based on store */
+@custom-variant dark (&:is(.dark *));
+
+/* Josefin Sans font (bold weight for headings) */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
+
+/* Global reset: remove default margins/padding, use border-box sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Full-width, no-scroll body */
+html, body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* React mount point: full viewport */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* ══════════════════════════════════════════════════════════
+   MENU OVERLAY STYLES
+   ══════════════════════════════════════════════════════════
+   
+   How the overlay works (CSS side):
+   ─────────────────────────────────
+   The overlay has 2 layers that work together:
+   
+   1. BACKDROP  — A dark, semi-transparent layer that covers the ENTIRE screen.
+                  It dims the content behind it and blurs it slightly.
+                  Clicking on it closes the menu.
+   
+   2. PANEL     — A side panel fixed to the RIGHT edge of the screen.
+                  It slides in/out using CSS transform (translateX).
+   
+   Animation mechanism:
+   ─────────────────────
+   - Both elements are ALWAYS in the DOM (they are never removed).
+   - By default, the backdrop is invisible (opacity: 0) and the panel is
+     pushed off-screen to the right (translateX(100%)).
+   - When the user clicks the burger button, React adds the "open" class.
+   - The "open" class changes opacity → 1 (backdrop) and translateX → 0 (panel).
+   - CSS `transition` handles the smooth animation between these states.
+   
+   ══════════════════════════════════════════════════════════ */
+
+/* ── BACKDROP ──────────────────────────────────────────────
+   Full-screen dark overlay that sits BEHIND the panel.
+   
+   Default state (hidden):
+   - opacity: 0       → completely invisible
+   - pointer-events: none → clicks pass through it (as if it doesn't exist)
+   
+   Open state (.open class added):
+   - opacity: 1       → fully visible (dark tint appears)
+   - pointer-events: auto → captures clicks (clicking it closes the menu)
+   
+   The transition property animates the opacity change over 0.3 seconds.
+*/
+.menu-overlay-backdrop {
+  position: fixed;       /* Fixed to the viewport — doesn't scroll with content */
+  inset: 0;              /* Shorthand for top:0, right:0, bottom:0, left:0 → covers entire screen */
+  z-index: 9998;         /* High z-index so it sits above all other content (but below the panel) */
+  background: rgba(0, 0, 0, 0.5);  /* Black at 50% opacity = dark semi-transparent */
+  backdrop-filter: blur(4px);        /* Glassmorphism: blurs whatever is behind this element */
+  -webkit-backdrop-filter: blur(4px); /* Safari support for backdrop-filter */
+  opacity: 0;            /* DEFAULT: invisible */
+  pointer-events: none;  /* DEFAULT: clicks pass through (doesn't block interaction) */
+  transition: opacity 0.3s ease;     /* Smooth fade in/out over 0.3 seconds */
+}
+
+/* When "open" class is added by React → backdrop becomes visible and clickable */
+.menu-overlay-backdrop.open {
+  opacity: 1;            /* Fully visible */
+  pointer-events: auto;  /* Now captures clicks (so clicking backdrop closes the menu) */
+}
+
+/* ── SLIDE-IN PANEL ────────────────────────────────────────
+   The actual side panel that contains user profile and logout button.
+   
+   Positioning:
+   - Fixed to the viewport at the RIGHT edge (top: 0, right: 0)
+   - Takes up the full screen height (height: 100vh)
+   - Width is 280px, but won't exceed 85% of viewport on small screens
+   
+   Slide animation (the key trick):
+   - DEFAULT:  transform: translateX(100%)  → pushed 100% of its own width to the right
+               This means it's completely OFF-SCREEN (hidden beyond the right edge)
+   - OPEN:     transform: translateX(0)     → moved back to its natural position (on-screen)
+   - The transition property smoothly animates between these positions
+   
+   Visual design:
+   - Uses "glassmorphism" effect: semi-transparent background + backdrop-filter blur
+   - Linear gradient gives it a purple-to-dark-purple tint
+   - Box-shadow creates a subtle shadow on the left edge for depth
+*/
+.menu-overlay-panel {
+  position: fixed;                  /* Fixed to viewport — doesn't move when page scrolls */
+  top: 0;                           /* Starts at the very top of the screen */
+  right: 0;                         /* Attached to the right edge */
+  z-index: 9999;                    /* Above the backdrop (9998) and all other content */
+  width: 280px;                     /* Panel width */
+  max-width: 85vw;                  /* On small screens, don't exceed 85% of viewport width */
+  height: 100vh;                    /* Full viewport height */
+  display: flex;                    /* Flexbox layout for stacking children vertically */
+  flex-direction: column;           /* Stack children top-to-bottom */
+  align-items: center;              /* Center children horizontally */
+  padding: 60px 28px 32px;          /* Internal spacing (extra top padding for close button) */
+  /* Glassmorphism gradient background (light mode) — purple tones at ~85-92% opacity */
+  background: linear-gradient(
+    135deg,                                /* Diagonal gradient direction */
+    rgba(99, 62, 180, 0.85) 0%,           /* Top-left: medium purple, 85% opaque */
+    rgba(58, 30, 120, 0.92) 100%          /* Bottom-right: dark purple, 92% opaque */
+  );
+  backdrop-filter: blur(24px) saturate(1.4);        /* Blur + color boost behind the panel */
+  -webkit-backdrop-filter: blur(24px) saturate(1.4); /* Safari support */
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.35);      /* Shadow on the left side for depth */
+  transform: translateX(100%);      /* DEFAULT: pushed completely off-screen to the right */
+  /* Smooth slide animation over 0.35s using Material Design easing curve */
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* When "open" class is added → panel slides into view */
+.menu-overlay-panel.open {
+  transform: translateX(0);  /* Slide to natural position (on-screen) */
+}
+
+/* ── DARK MODE PANEL OVERRIDE ──────────────────────────────
+   When the app is in dark mode, the root element has class "dark".
+   This rule uses the descendant selector (.dark .menu-overlay-panel) to override
+   the gradient with much darker colors to match the dark theme.
+*/
+.dark .menu-overlay-panel {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 25, 50, 0.95) 0%,    /* Top-left: very dark purple */
+    rgba(20, 16, 38, 0.98) 100%   /* Bottom-right: nearly black purple */
+  );
+}
+
+/* ── CLOSE (✕) BUTTON ──────────────────────────────────────
+   Positioned at the top-right corner of the panel.
+   Uses position: absolute so it floats independently of the flex flow.
+   On hover, it rotates 90° for a nice micro-animation.
+*/
+.menu-overlay-close {
+  position: absolute;    /* Float freely inside the panel (not part of flex flow) */
+  top: 16px;             /* 16px from the top of the panel */
+  right: 16px;           /* 16px from the right edge of the panel */
+  background: none;      /* Transparent background */
+  border: none;          /* No border */
+  color: rgba(255, 255, 255, 0.8);  /* Slightly transparent white */
+  cursor: pointer;       /* Show pointer cursor on hover */
+  padding: 4px;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s, transform 0.2s;  /* Smooth hover effects */
+}
+.menu-overlay-close:hover {
+  background: rgba(255, 255, 255, 0.12);  /* Subtle white highlight */
+  color: #fff;                             /* Full white */
+  transform: rotate(90deg);                /* Rotate the ✕ icon 90° — smooth spin effect */
+}
+
+/* ── USER AVATAR CIRCLE ────────────────────────────────────
+   A circular badge showing the first letter of the user's name.
+   Uses a purple gradient background with a glow shadow.
+*/
+.menu-overlay-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;   /* Makes a square into a perfect circle */
+  /* Purple gradient: light purple (#c084fc) → vivid purple (#7c3aed) */
+  background: linear-gradient(135deg, #c084fc 0%, #7c3aed 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 700;     /* Bold */
+  color: #fff;
+  margin-bottom: 16px;
+  /* Purple glow shadow underneath the circle for a floating/premium look */
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+  letter-spacing: 1px;
+}
+
+/* ── USER INFO (Name + Email) ──────────────────────────────
+   Stacked vertically and centered below the avatar.
+*/
+.menu-overlay-user-info {
+  display: flex;
+  flex-direction: column;  /* Stack name on top, email below */
+  align-items: center;     /* Center both horizontally */
+  gap: 4px;                /* Small space between name and email */
+}
+.menu-overlay-name {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+.menu-overlay-email {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);  /* 60% opacity white = subtle/secondary text */
+}
+
+/* ── DIVIDER LINE ──────────────────────────────────────────
+   A thin horizontal line separating user info from the logout button.
+   Uses border-top on an <hr> element (border is reset to none first).
+*/
+.menu-overlay-divider {
+  width: 80%;            /* Doesn't span full width — leaves some breathing room */
+  border: none;          /* Remove default <hr> border */
+  border-top: 1px solid rgba(255, 255, 255, 0.15);  /* Subtle white line */
+  margin: 24px 0;        /* Vertical spacing above and below */
+}
+
+/* ── LOGOUT / SIGN OUT BUTTON ──────────────────────────────
+   A full-width button at the bottom of the panel.
+   Contains an icon + "Sign out" text side by side (flexbox row).
+   
+   Hover effect: background turns red-ish and the button slides 4px to the right.
+   Active (click) effect: button scales down slightly for tactile feedback.
+*/
+.menu-overlay-logout {
+  display: flex;
+  align-items: center;
+  gap: 10px;             /* Space between the icon and "Sign out" text */
+  width: 100%;           /* Full width of the panel */
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;   /* Rounded corners */
+  background: rgba(255, 255, 255, 0.08);  /* Very subtle white tint */
+  color: #fff;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;  /* Smooth hover/click animations */
+  letter-spacing: 0.3px;
+}
+/* Hover: red-tinted background + slight shift right → indicates "danger" action */
+.menu-overlay-logout:hover {
+  background: rgba(239, 68, 68, 0.25);  /* Red at 25% opacity */
+  transform: translateX(4px);            /* Slide 4px to the right */
+}
+/* Active (click): shrink slightly for press feedback */
+.menu-overlay-logout:active {
+  transform: scale(0.97);  /* Scale down to 97% — gives a "button press" feel */
+}
