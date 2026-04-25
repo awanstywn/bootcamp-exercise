@@ -158,13 +158,16 @@
       }
 
       .modules-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-        gap: 25px;
+        columns: 2 450px;
+        column-gap: 25px;
         margin-bottom: 40px;
       }
 
       .module-card {
+        display: inline-block;
+        width: 100%;
+        break-inside: avoid;
+        margin-bottom: 25px;
         background: rgba(255, 255, 255, 0.03);
         backdrop-filter: blur(10px);
         border: 1px solid rgba(59, 130, 246, 0.2);
@@ -988,6 +991,7 @@
                         >View Code</a
                       >
                     </div>
+                  </div>
                 </div>
               </div>
               <div class="submodule">
