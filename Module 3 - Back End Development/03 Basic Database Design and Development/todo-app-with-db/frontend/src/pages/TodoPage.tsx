@@ -23,7 +23,7 @@
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AppShell from "../components/layout/AppShell";
 import { Header } from "../components/layout/Header";
 import { TodoInput } from "../components/todo/TodoInput";
