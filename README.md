@@ -65,7 +65,9 @@ Server-side programming, APIs, databases, and server management.
 | Intro to Backend Development with Nodejs  | `express-todos/`, `redirection-exercise/`           | ✅ Completed   |
 | REST API Development                      | `restapi-bus-schedule/`                             | ✅ Completed   |
 | Basic Database Design and Development     | `express-db-todos/`, `todo-app-with-db/`            | ✅ Completed   |
-| Advanced Database Design and Development  |                                                     | 🔄 In Progress |
+| Advanced Database Design and Development  |                                                     | ✅ Completed   |
+| Exercise                                  | `DB Design Exercise/`, `Query Exercise/`            | ✅ Completed   |
+| Database Integration with ORM Tools       | `social-media-api/`                                 | 🔄 In Progress |
 
 **Overall Module Status:** 🔄 In Progress
 

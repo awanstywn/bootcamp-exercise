@@ -1,0 +1,84 @@
+// prisma/schema.prisma
+// Database schema definition — Prisma reads this file to:
+//   1. Generate the type-safe client (npx prisma generate)
+//   2. Create/run database migrations (npx prisma migrate dev)
+// Docs: https://www.prisma.io/docs/concepts/components/prisma-schema
+
+// ── Generator ──────────────────────────────────────────────────────────────────
+// Tells Prisma HOW to generate the client code.
+// "prisma-client" is the Prisma v7 provider (replaces "prisma-client-js" from v6).
+// Output path determines where the generated TypeScript files are placed.
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ── Datasource ─────────────────────────────────────────────────────────────────
+// Tells Prisma WHICH database to connect to.
+datasource db {
+  provider = "postgresql"
+}
+
+// ── Models ─────────────────────────────────────────────────────────────────────
+// Each model maps to a database table. Prisma auto-generates CRUD methods for each.
+
+// User — represents a registered account in the system
+model User {
+  id        String   @id @default(cuid())   // Primary key — cuid() generates unique, collision-resistant IDs
+  name      String                           // Display name
+  email     String   @unique                 // Login identifier — must be unique across all users
+  password  String                           // bcrypt-hashed password — NEVER stored as plain text
+  avatar    String?                          // Profile picture URL (nullable — ? means optional)
+  bio       String?                          // Short biography (nullable)
+  createdAt DateTime @default(now())         // Auto-set on creation
+  updatedAt DateTime @updatedAt              // Auto-updated by Prisma on every save
+
+  // Relations — one user can have many posts, comments, and likes
+  posts    Post[]
+  comments Comment[]
+  likes    Like[]
+}
+
+// Post — a piece of content created by a user
+model Post {
+  id        String   @id @default(cuid())
+  content   String                           // Post body text
+  imageUrl  String?                          // Optional image attachment URL
+  authorId  String                           // Foreign key → User.id (who wrote this post)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  author   User      @relation(fields: [authorId], references: [id])  // Many-to-one: each post belongs to one user
+  comments Comment[]                                                   // One-to-many: a post can have many comments
+  likes    Like[]                                                      // One-to-many: a post can have many likes
+}
+
+// Comment — a response to a post, written by a user
+model Comment {
+  id        String   @id @default(cuid())
+  content   String                           // Comment text
+  postId    String                           // Foreign key → Post.id (which post this comment belongs to)
+  authorId  String                           // Foreign key → User.id (who wrote this comment)
+  createdAt DateTime @default(now())
+
+  // Relations
+  post   Post @relation(fields: [postId], references: [id])    // Many-to-one: each comment belongs to one post
+  author User @relation(fields: [authorId], references: [id])  // Many-to-one: each comment belongs to one user
+}
+
+// Like — represents a user liking a post (junction/pivot table)
+model Like {
+  id        String   @id @default(cuid())
+  postId    String                           // Foreign key → Post.id
+  userId    String                           // Foreign key → User.id
+  createdAt DateTime @default(now())
+
+  // Relations
+  post Post @relation(fields: [postId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+
+  // Compound unique constraint — prevents a user from liking the same post twice.
+  // Without this, the like counter would be inaccurate.
+  @@unique([postId, userId])
+}
+
