@@ -90,19 +90,17 @@ export default function ArticleForm({ article, onSubmit, onCancel }: ArticleForm
           type="button" 
           variant="outline" 
           onClick={() => handleSubmit(false)} 
-          isLoading={loading}
-          icon={<Save className="h-4 w-4" />}
+          loading={loading}
         >
-          Save as Draft
+          <Save className="h-4 w-4" /> Save as Draft
         </Button>
         <Button 
           type="button" 
           variant="primary" 
           onClick={() => handleSubmit(true)} 
-          isLoading={loading}
-          icon={<Send className="h-4 w-4" />}
+          loading={loading}
         >
-          {isEdit ? 'Update Article' : 'Publish Now'}
+          <Send className="h-4 w-4" /> {isEdit ? 'Update Article' : 'Publish Now'}
         </Button>
       </div>
     </div>
