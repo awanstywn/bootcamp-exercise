@@ -67,7 +67,9 @@ Server-side programming, APIs, databases, and server management.
 | Basic Database Design and Development     | `express-db-todos/`, `todo-app-with-db/`            | ✅ Completed   |
 | Advanced Database Design and Development  |                                                     | ✅ Completed   |
 | Exercise                                  | `DB Design Exercise/`, `Query Exercise/`            | ✅ Completed   |
-| Database Integration with ORM Tools       | `social-media-api/`                                 | 🔄 In Progress |
+| Database Integration with ORM Tools       | `social-media-api/`                                 | ✅ Completed   |
+| Exercise                                  | `blog-app-api/`                                     | 🔄 In Progress |
+| AI Assited Backend Development            | `task-management-backend/`                          | 🔄 In Progress |
 
 **Overall Module Status:** 🔄 In Progress
 
@@ -85,7 +87,7 @@ This repository will be continuously updated throughout the bootcamp until compl
 
 ### Current Focus
 
-- Frontend Web Development fundamentals
+- Backend Development & AI Assisted Development
 
 ## 🛠️ Tech Stack
 
