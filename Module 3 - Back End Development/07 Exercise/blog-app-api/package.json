@@ -1,0 +1,15 @@
+{
+  "name": "blog-app",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev -w @blog-app/api",
+    "dev:frontend": "npm run dev -w @blog-app/frontend",
+    "dev": "npm run dev:backend & npm run dev:frontend",
+    "build:frontend": "npm run build -w @blog-app/frontend"
+  }
+}

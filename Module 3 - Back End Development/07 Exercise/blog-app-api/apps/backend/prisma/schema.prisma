@@ -1,0 +1,58 @@
+// prisma/schema.prisma
+// Database schema definition — Prisma reads this file to:
+//   1. Generate the type-safe client (npx prisma generate)
+//   2. Create/run database migrations (npx prisma migrate dev)
+// Docs: https://www.prisma.io/docs/concepts/components/prisma-schema
+
+// ── Generator ──────────────────────────────────────────────────────────────────
+// Tells Prisma HOW to generate the client code.
+// "prisma-client" is the Prisma v7 provider (replaces "prisma-client-js" from v6).
+// Output path determines where the generated TypeScript files are placed.
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ── Datasource ─────────────────────────────────────────────────────────────────
+// Tells Prisma WHICH database to connect to.
+// Note: URL is injected dynamically by prisma.config.ts in Prisma v7
+datasource db {
+  provider = "postgresql"
+}
+
+// ── Models ─────────────────────────────────────────────────────────────────────
+
+// User — represents a registered account in the system
+model User {
+  id        String    @id @default(cuid())   // Primary key
+  name      String    @db.VarChar(255)       // Display name
+  email     String    @unique @db.VarChar(255) // Login identifier
+  password  String                           // bcrypt-hashed password
+  avatar    String?                          // Profile picture URL (nullable)
+  bio       String?                          // Short biography (nullable)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  // Relations
+  articles  Article[] // One user can have many articles
+
+  @@map("users")
+}
+
+// Article — a piece of content created by a user (Blog Post)
+model Article {
+  id        String    @id @default(cuid())
+  title     String    @db.VarChar(255) // Required for blog articles
+  content   String    @db.Text // Post body text
+  imageUrl  String?   // Optional image attachment URL
+  published Boolean   @default(false) // Draft vs Published status
+  authorId  String    // Foreign key → User.id
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  // Relations
+  author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)  // Many-to-one
+
+  @@index([authorId])
+  @@index([createdAt(sort: Desc)])
+  @@map("articles")
+}
