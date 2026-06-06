@@ -73,13 +73,24 @@ Server-side programming, APIs, databases, and server management.
 
 **Overall Module Status:** 🔄 In Progress
 
+### Module 4 - AI-Powered Software Development
+
+Building intelligent applications with AI/ML integration.
+
+| Sub Module                                                                 | Exercise Files                          | Status       |
+| -------------------------------------------------------------------------- | --------------------------------------- | ------------ |
+| Software Architecture, Design Patterns, and Software Development Lifecycle |                                         | ✅ Completed |
+| AI-Assisted Software Development                                           | `client/`, `server/`, `shared/`         | ✅ Completed |
+| AI-Assisted UI UX Design for Software Development                          | `parfume-marketplace/`                  | ✅ Completed |
+
+**Overall Module Status:** ✅ Completed
+
 ### 🔄 More modules coming soon...
 
 This repository will be continuously updated throughout the bootcamp until completion.
 
 #### Upcoming Modules:
 
-- 🔜 **Module 4: AI-Powered Software Development** - Building intelligent applications with AI/ML integration
 - 🔜 **Module 5: Advanced Software Development** - Advanced patterns, scalability, and enterprise-level development
 - 🔜 **Module 6: Software Delivery and Reliability** - DevOps, CI/CD, testing, deployment strategies, and monitoring
 

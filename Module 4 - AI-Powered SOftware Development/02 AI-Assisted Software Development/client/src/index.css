@@ -1,0 +1,26 @@
+/**
+ * @fileoverview Global CSS and Tailwind CSS directives.
+ * 
+ * Relations:
+ * - Consumes: TailwindCSS configuration.
+ * - Used by: `main.tsx` to inject styles into the document.
+ * 
+ * Logic:
+ * - Imports the Tailwind framework.
+ * - Defines global theme variables (primary colors) and base body styling.
+ */
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: var(--color-blue-50);
+  --color-primary-100: var(--color-blue-100);
+  --color-primary-500: var(--color-blue-500);
+  --color-primary-600: var(--color-blue-600);
+  --color-primary-700: var(--color-blue-700);
+}
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}

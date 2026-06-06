@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+/* ========================================
+   Visual Design System — Tailwind v4 Theme
+   ======================================== */
+@theme {
+  /* --- Typography --- */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+
+  /* --- Backgrounds --- */
+  --color-bg: #FAF7F4;
+  --color-bg-alt: #F5F0E8;
+  --color-bg-dark: #111827;
+
+  /* --- Text --- */
+  --color-text-main: #111111;
+  --color-text-muted: #6B7280;
+  --color-text-light: #9CA3AF;
+
+  /* --- Primary --- */
+  --color-primary: #111827;
+  --color-primary-hover: #1F2937;
+
+  /* --- Secondary --- */
+  --color-secondary: #B08A6A;
+  --color-secondary-hover: #9A7558;
+
+  /* --- Accent --- */
+  --color-accent: #B76E79;
+  --color-accent-light: #D4A0A7;
+
+  /* --- Borders --- */
+  --color-border: #E5E7EB;
+  --color-border-focus: #111827;
+
+  /* --- Status --- */
+  --color-success: #16A34A;
+  --color-error: #DC2626;
+  --color-warning: #F59E0B;
+  --color-info: #3B82F6;
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-light);
+}
