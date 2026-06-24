@@ -3,6 +3,6 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  base: "/bootcamp-exercise/demos/profile-website/",
+  base: "/bootcamp-exercise/demos/m2-profile-website/",
   plugins: [react(), tailwindcss()],
 });
