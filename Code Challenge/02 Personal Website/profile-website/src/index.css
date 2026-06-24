@@ -1,0 +1,380 @@
+/**
+ * index.css — Design System & Tailwind v4
+ *
+ * Neo-Brutalist design system inspired by:
+ * https://www.behance.net/gallery/210020765/CV-Website-Portfolio-for-a-Full-Stack-Developer
+ *
+ * Palette: light grey background, white cards, neon green accent, black text & borders
+ * Typography: Space Grotesk (headings) + Space Mono (body/code)
+ * Style: thick borders, sharp corners, dotted texture accents
+ */
+
+@import "tailwindcss";
+
+@theme {
+  /* Colors - Mapped to dynamic theme variables */
+  --color-bg-primary: var(--theme-bg-primary);
+  --color-bg-card: var(--theme-bg-card);
+  --color-accent: var(--theme-accent);
+  --color-accent-hover: var(--theme-accent-hover);
+  --color-accent-muted: var(--theme-accent-muted);
+  --color-text-primary: var(--theme-text-primary);
+  --color-text-secondary: var(--theme-text-secondary);
+  --color-text-muted: var(--theme-text-muted);
+  --color-border: var(--theme-border);
+  --color-border-light: var(--theme-border-light);
+  --color-dotted: var(--theme-dotted);
+  /* Fonts */
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Spacing */
+  --spacing-section: 6rem;
+  --spacing-section-mobile: 3rem;
+}
+
+@layer base {
+  :root {
+    --theme-bg-primary: #E8E8E8;
+    --theme-bg-card: #FFFFFF;
+    --theme-accent: #39FF14;
+    --theme-accent-hover: #2ED611;
+    --theme-accent-muted: #39FF1433;
+    --theme-text-primary: #000000;
+    --theme-text-secondary: #444444;
+    --theme-text-muted: #777777;
+    --theme-border: #000000;
+    --theme-border-light: #CCCCCC;
+    --theme-dotted: #DDDDDD;
+  }
+
+  [data-theme="dark"] {
+    --theme-bg-primary: #121212;
+    --theme-bg-card: #1E1E1E;
+    --theme-accent: #39FF14;
+    --theme-accent-hover: #2ED611;
+    --theme-accent-muted: #39FF1433;
+    --theme-text-primary: #F3F4F6;
+    --theme-text-secondary: #9CA3AF;
+    --theme-text-muted: #6B7280;
+    --theme-border: #4B5563;
+    --theme-border-light: #374151;
+    --theme-dotted: #374151;
+  }
+}
+
+/* ========================================
+   CSS Reset & Base Styles
+   ======================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-muted);
+  border: 2px solid var(--color-bg-primary);
+}
+
+/* ========================================
+   Section Header Style (// PREFIX)
+   ======================================== */
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.section-label::before {
+  content: "// ";
+  color: var(--color-accent);
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 3.5rem;
+  }
+}
+
+/* ========================================
+   Neo-Brutalist Card
+   ======================================== */
+
+.card-brutal {
+  background: var(--color-bg-card);
+  border: 2px solid var(--color-border);
+  border-radius: 0;
+  padding: 1.5rem;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-brutal:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 3px 3px 0px var(--color-border);
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-accent);
+  color: var(--color-text-primary);
+  border: 2px solid var(--color-border);
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-decoration: none;
+}
+
+.btn-accent:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0px var(--color-border);
+  background: var(--color-accent-hover);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--color-text-primary);
+  border: 2px solid var(--color-border);
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0px var(--color-border);
+  background: var(--color-bg-card);
+}
+
+/* ========================================
+   Nav Tabs
+   ======================================== */
+
+.nav-tab {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.5rem 1rem;
+  border: 2px solid transparent;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.nav-tab:hover {
+  color: var(--color-accent);
+}
+
+.nav-tab.active {
+  background: var(--color-accent);
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+}
+
+/* ========================================
+   Dotted Texture Pattern
+   ======================================== */
+
+.dotted-bg {
+  background-image: radial-gradient(circle, var(--color-dotted) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* ========================================
+   Tech Tag / Chip
+   ======================================== */
+
+.tech-tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-bg-card);
+  color: var(--color-text-primary);
+}
+
+.tech-tag--accent {
+  background: var(--color-accent-muted);
+  border-color: var(--color-accent);
+}
+
+/* ========================================
+   Timeline
+   ======================================== */
+
+.timeline-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-border);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -5px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--color-border);
+  background: var(--color-accent);
+  border-radius: 0;
+}
+
+.timeline-dot--inactive {
+  background: var(--color-bg-card);
+}
+
+/* ========================================
+   Smooth scroll
+   ======================================== */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+/* ========================================
+   Selection color
+   ======================================== */
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-text-primary);
+}
+
+/* ========================================
+   Modal / Dialog
+   ======================================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: var(--color-bg-card);
+  border: 3px solid var(--color-border);
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s ease forwards;
+}
+
+/* Content visibility for below-fold sections */
+.below-fold {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
