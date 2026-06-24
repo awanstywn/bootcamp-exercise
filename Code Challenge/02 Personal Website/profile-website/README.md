@@ -21,7 +21,7 @@ A striking, high-performance personal portfolio website built with a modern Neo-
 Here is a preview of the Neo-Brutalist responsive layout and dark/light modes:
 
 <div align="center">
-  <img src="./public/preview.webp" alt="Aries Setiawan Portfolio Preview" width="100%" style="border: 3px solid #000; border-radius: 8px; box-shadow: 5px 5px 0px #000;" />
+  <img src="./public/preview-v2.webp" alt="Aries Setiawan Portfolio Preview" width="100%" style="border: 3px solid #000; border-radius: 8px; box-shadow: 5px 5px 0px #000;" />
 </div>
 
 ---
