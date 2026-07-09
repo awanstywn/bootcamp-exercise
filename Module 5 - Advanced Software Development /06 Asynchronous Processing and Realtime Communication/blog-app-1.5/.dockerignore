@@ -1,0 +1,36 @@
+# Dependency directories
+**/node_modules
+
+# Build outputs
+**/dist
+**/build
+
+# Environment variables
+**/.env
+**/.env.*
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+**/*.log
+
+# Docker-related files (no need to copy them inside the container)
+Dockerfile
+.dockerignore
+
+# Git
+.git
+.gitignore
+
+# IDE and OS files
+.vscode
+.idea
+.DS_Store
+
+# Documentation & Configs (Optional, but good for keeping images tiny)
+README.md
+*.md
+eslint.config.mjs
+.prettierrc
