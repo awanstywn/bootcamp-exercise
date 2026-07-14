@@ -19,6 +19,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "declaration": true,
+    "typeRoots": ["./node_modules/@types"],
     
     /* Path Aliases (To avoid ../../../ relative import hell) */
     "paths": {
