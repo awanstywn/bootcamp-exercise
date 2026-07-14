@@ -6,6 +6,7 @@
  * @logic
  * - Imports the fully configured Express `app`.
  * - Calls `app.listen()` on `env.PORT`.
+ * - Conditionally sets up Socket.io and BullMQ worker events.
  * - Logs confirmation to the console.
  */
 import app from './app.js';
@@ -16,6 +17,7 @@ import { redisClient } from './config/redis.js';
 import { createServer } from 'http';
 import { initSocketIO } from './config/socket.js';
 import { publishWorker } from './config/queue.js';
+import { Request, Response } from 'express';
 
 async function startServer() {
   try {
@@ -26,32 +28,34 @@ async function startServer() {
     // Cleanup expired tokens in background
     prisma.refreshToken.deleteMany({
       where: { OR: [{ expiresAt: { lt: new Date() } }, { revoked: true }] }
-    }).then(res => logger.info(`Cleaned up ${res.count} expired/revoked tokens.`)).catch(err => logger.error('Cleanup tokens error', err));
+    }).then((res: { count: number }) => logger.info(`Cleaned up ${res.count} expired/revoked tokens.`)).catch((err: Error) => logger.error('Cleanup tokens error', err));
 
     const httpServer = createServer(app);
     const io = initSocketIO(httpServer);
 
-    // Wire BullMQ → Socket.io
-    publishWorker.on('completed', (_job, result) => {
-      logger.info(`[Server] Emitting article:published to clients for post: ${result.title}`);
-      const payload = {
-        id: result.id,
-        title: result.title,
-        slug: result.slug,
-        author: result.author,
-      };
-      logger.info(`[Server] Emitting payload: ${JSON.stringify(payload)}`);
-      io.emit('article:published', payload);
-    });
-
-
+    // Wire BullMQ → Socket.io (only if BullMQ worker is available)
+    if (publishWorker) {
+      publishWorker.on('completed', (_job, result) => {
+        logger.info(`[Server] Emitting article:published to clients for post: ${result.title}`);
+        const payload = {
+          id: result.id,
+          title: result.title,
+          slug: result.slug,
+          author: result.author,
+        };
+        logger.info(`[Server] Emitting payload: ${JSON.stringify(payload)}`);
+        io.emit('article:published', payload);
+      });
+    } else {
+      logger.warn('[Server] BullMQ worker not available. Real-time publish events disabled.');
+    }
 
     // 2. Capture the server instance
     const server = httpServer.listen(env.PORT, () => {
       logger.info(`Server running on port ${env.PORT}`);
     });
 
-    app.get('/api/test-socket', (req, res) => {
+    app.get('/api/test-socket', (req: Request, res: Response) => {
       const payload = {
         id: 'test-id',
         title: 'Manually Triggered Post',
@@ -81,10 +85,15 @@ async function startServer() {
         logger.info('Closed all incoming HTTP connections.');
         await prisma.$disconnect();
         logger.info('Disconnected from database.');
-        await publishWorker.close();
-        logger.info('Closed BullMQ worker.');
-        await redisClient.quit();
-        logger.info('Disconnected from Redis. Exiting now.');
+        if (publishWorker) {
+          await publishWorker.close();
+          logger.info('Closed BullMQ worker.');
+        }
+        if (redisClient) {
+          await redisClient.quit();
+          logger.info('Disconnected from Redis.');
+        }
+        logger.info('Exiting now.');
         process.exit(0);
       });
     };
@@ -98,8 +107,7 @@ async function startServer() {
   }
 }
 
-// Only start the HTTP server if we are running locally.
-// On Vercel, the serverless function handles requests without app.listen()
+// Only start the HTTP server if we are not on Vercel
 if (!process.env.VERCEL) {
   startServer();
 }
