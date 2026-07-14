@@ -5,8 +5,8 @@
  */
 
 import { Request, Response } from "express";
-import { conversations, generateId } from "../store";
 import { OpenRouterService } from "../services/openrouter";
+import { conversations, generateId } from "../store";
 import { ChatMessage } from "../types";
 
 // Lazy init — created on first use (after dotenv is loaded)
@@ -20,15 +20,17 @@ const getOpenRouter = () => {
 const DEFAULT_MODEL = process.env.DEFAULT_MODEL || "google/gemma-4-26b-a4b-it:free";
 
 // Simple system prompt
-const SYSTEM_PROMPT = process.env.SYSTEM_PROMPT || "You are a helpful AI assistant. Answer clearly, concisely, and in the same language as the user.";
+const SYSTEM_PROMPT =
+  process.env.SYSTEM_PROMPT ||
+  "You are a helpful AI assistant. Answer clearly, concisely, and in the same language as the user.";
 
 /**
  * sendMessage
- * 
+ *
  * Processes an incoming user message, appends it to the conversation history, and communicates with the LLM via OpenRouter.
  * It streams the AI's response token-by-token back to the frontend using Server-Sent Events (SSE) to create a real-time typing effect.
  * Automatically generates a conversation title based on the first user message.
- * 
+ *
  * @param {Request} req - Express Request object containing the conversation ID in params and user message in body.
  * @param {Response} res - Express Response object used to stream the SSE data.
  * @returns {Promise<void | Response>} - Resolves when streaming is complete or returns an error response early.

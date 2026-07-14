@@ -16,53 +16,28 @@ The application supports three distinct user roles, each with specific permissio
 **Seeded Admin Account:** For testing administrative features, log in using Email: `admin@parfume.com` and Password: `admin123`.
 
 ### 1. Guest
-- **Browsing & Search**: Guests can view the perfume catalog, read detailed product descriptions, and utilize the global search bar and filter sidebar (filtering by category, scent family, and price).
-- **Restricted Actions**: Cannot add items to the cart or proceed to checkout. Any attempt to purchase will prompt a modal to register or login.
-
-**Implementation Details: Guest Purchase Protection**
-- **Location:** `client/src/pages/ProductDetailPage.tsx` (Lines 68 - 75)
-- **Logic:** The `handleAddToCart` function verifies user session using `if (!user)` and directly calls `setIsGuestModalOpen(true)` to trigger the registration modal, preventing anonymous cart additions.
+- **Browsing & Search**: Guests can view the perfume catalog, read detailed product descriptions, and utilize the global search bar and filter sidebar (`client/src/pages/ShopPage.tsx` Lines 30-38 & 73 & 91).
+- **Restricted Actions**: Cannot add items to the cart or proceed to checkout. Any attempt to purchase will prompt a modal to register or login (`client/src/pages/ProductDetailPage.tsx` Lines 68-75, inside `handleAddToCart`).
 
 ### 2. Buyer (Registered User)
 - **Shopping**: Full access to browse products, search, add items to the cart, and checkout securely.
-- **Address Management**: Save, edit, and manage up to 5 shipping addresses. Addresses can be selected dynamically during checkout or managed from the user Profile page.
-- **Order Tracking**: View a comprehensive history of placed orders and their current fulfillment statuses.
-- **Payment Verification**: Upload image proofs of transfer/payment for pending orders to update their status to `PAID`.
-
-**Implementation Details: Buyer Operations**
-- **Address Management (`client/src/pages/ProfilePage.tsx`)**:
-  - **Save Address:** Line 48 (`handleAddAddress`) — Validates current address count and creates a new entry.
-  - **Select Default:** Line 210 (`setDefaultAddress`) — Sets the preferred active shipping address.
-  - **Delete Address:** Line 217 (`deleteAddress`) — Removes a saved address from the user's account.
-- **Order Tracking (`client/src/pages/ProfilePage.tsx`)**: 
-  - **Fetch History:** Lines 43-46 — Uses `useSWR(API_ROUTES.ORDERS.LIST_MY_ORDERS)` to fetch active/past orders.
-- **Payment Verification (`client/src/pages/ProfilePage.tsx`)**:
-  - **Upload Proof:** Lines 57-65 (`handleUploadProof`) — Submits form data containing the transfer proof image.
+- **Address Management** (`client/src/pages/ProfilePage.tsx`): 
+  - **Save Address:** (Line 48) Validates current address count (`< 5`) and calls `addAddress` API hook.
+  - **Select Default:** (Line 210) Sets the active shipping address via `setDefaultAddress`.
+  - **Delete Address:** (Line 217) Removes a saved address from the account via `deleteAddress`.
+- **Order Tracking**: View a comprehensive history of placed orders and their current fulfillment statuses (`client/src/pages/ProfilePage.tsx` Lines 43-46 using `useSWR(API_ROUTES.ORDERS.LIST_MY_ORDERS)`).
+- **Payment Verification**: Upload image proofs of transfer/payment for pending orders to update their status to `PAID` (`client/src/pages/ProfilePage.tsx` Lines 57-65 via `handleUploadProof`).
 
 ### 3. Admin
-- **Admin Dashboard**: A comprehensive admin panel to view metrics, manage the CMS, and navigate administrative tasks.
-- **Product Management**: Full CRUD operations for products. Manage inventory stocks, delete products, and upload/manage multiple product images.
-- **Order Management**: View all customer orders and manually update order statuses (e.g., verifying payments or marking as `COMPLETED`/`SHIPPED`).
+- **Admin Route Protection (Backend)**: Restricts administrative endpoints globally by applying Express middlewares: `router.use(authGuard, adminGuard)` (`server/src/routes/admin.routes.ts` Line 32).
+- **Product Management** (`server/src/routes/admin.routes.ts`):
+  - **Create:** (Line 37) `router.post("/products", uploadMultiple, createProduct)`.
+  - **Update/Delete:** (Lines 38-39) Updates or removes existing product records.
+  - **Manage Stock:** (Line 40) Modifies product inventory quantities.
+  - **Upload Images:** (Lines 41-42) Attaches multiple image assets to an existing product.
+- **Order Management**: View all customer orders and manually update order statuses (e.g., verifying payments or marking as `COMPLETED`/`SHIPPED`) (`server/src/routes/admin.routes.ts` Line 46).
 - **Store View**: Admins can view the live storefront in a "read-only" mode (cart and purchasing disabled), complete with a persistent floating CTA to quickly return to the Admin Dashboard.
-- **CMS Management**: Update dynamic textual content for informational pages like About Us, Shipping Info, and Returns.
-
-**Implementation Details: Admin Route Protection & Operations (Backend)**
-- **Global Middleware Protection (`server/src/routes/admin.routes.ts`)**: 
-  - **Apply Guard:** Line 32 — `router.use(authGuard, adminGuard)` restricts endpoints to admin access.
-- **Product Management (`server/src/routes/admin.routes.ts`)**:
-  - **Create:** Line 37 — `router.post("/products", uploadMultiple, createProduct)`
-  - **Update/Delete:** Lines 38-39 — Updates or removes existing product records.
-  - **Manage Stock:** Line 40 — Modifies product inventory quantities.
-  - **Upload Images:** Lines 41-42 — Attaches multiple image assets to an existing product.
-- **Order Management (`server/src/routes/admin.routes.ts`)**:
-  - **Update Status:** Line 46 — Updates order statuses to `PAID`, `COMPLETED`, or `SHIPPED`.
-- **CMS Management (`server/src/routes/admin.routes.ts`)**:
-  - **Update Content:** Line 55 — Modifies the textual content on dummy info pages.
-
-**Implementation Details: Product Search & Filtering**
-- **Location:** `client/src/pages/ShopPage.tsx`
-- **Setup Params:** Lines 30-38 — Extracts filter variables (search, category, scentFamily, minPrice, maxPrice, sort) dynamically from the URL.
-- **Apply Filters:** Lines 73 & 91 — Serializes active `searchParams` to mutate the URL without refreshing the application.
+- **CMS Management**: Update dynamic textual content for informational pages like About Us, Shipping Info, and Returns (`server/src/routes/admin.routes.ts` Line 55).
 
 ## 🚀 Quick Start Guide
 

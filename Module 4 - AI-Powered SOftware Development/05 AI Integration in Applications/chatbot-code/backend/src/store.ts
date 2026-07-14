@@ -7,7 +7,7 @@
 // In-memory data store — all data will be lost when server restarts
 // Sufficient for bootcamp exercise, no database needed
 
-import type { Conversation, Message } from "../../shared/types";
+import type { Conversation } from "../../shared/types";
 
 // Store all conversations in memory
 export const conversations: Conversation[] = [];
@@ -17,10 +17,10 @@ let counter = 0;
 
 /**
  * generateId
- * 
+ *
  * Generates a simple, unique identifier using the current timestamp and an incrementing counter.
  * Used for assigning IDs to new Conversations and Messages before saving them in memory.
- * 
+ *
  * @returns {string} - A unique string identifier.
  */
 export const generateId = (): string => {
