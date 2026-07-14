@@ -13,6 +13,8 @@ import { logger } from './logger.js';
 
 // Create a singleton Redis client
 export const redisClient = new Redis(env.REDIS_URL, {
+  // Required for Upstash Serverless Redis
+  tls: env.REDIS_URL.startsWith('rediss://') ? {} : undefined,
   // Retry strategy: if Redis disconnects, try to reconnect
   retryStrategy(times) {
     const delay = Math.min(times * 50, 2000);

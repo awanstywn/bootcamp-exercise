@@ -303,7 +303,11 @@ export class ContentService {
     
     if (data.status === 'SCHEDULED' && scheduledDate) {
       const delay = scheduledDate.getTime() - Date.now();
-      await publishQueue.add('publish', { postId: post.id }, { delay, jobId: `publish-${post.id}` });
+      if (publishQueue) {
+        await publishQueue.add('publish', { postId: post.id }, { delay, jobId: `publish-${post.id}` });
+      } else {
+        logger.warn(`[ContentService] BullMQ unavailable. Scheduled publish for post ${post.id} will not be queued.`);
+      }
     }
 
     await CacheService.delByPattern('posts:*');
@@ -367,12 +371,14 @@ export class ContentService {
       include: { category: true, tags: true },
     });
     
-    if (data.status === 'SCHEDULED' && updatedPost.scheduledAt) {
-      const delay = updatedPost.scheduledAt.getTime() - Date.now();
-      await publishQueue.add('publish', { postId: updatedPost.id }, { delay, jobId: `publish-${updatedPost.id}` });
-    } else if (data.status && data.status !== 'SCHEDULED') {
-      const job = await publishQueue.getJob(`publish-${updatedPost.id}`);
-      if (job) await job.remove();
+    if (publishQueue) {
+      if (data.status === 'SCHEDULED' && updatedPost.scheduledAt) {
+        const delay = updatedPost.scheduledAt.getTime() - Date.now();
+        await publishQueue.add('publish', { postId: updatedPost.id }, { delay, jobId: `publish-${updatedPost.id}` });
+      } else if (data.status && data.status !== 'SCHEDULED') {
+        const job = await publishQueue.getJob(`publish-${updatedPost.id}`);
+        if (job) await job.remove();
+      }
     }
 
     await CacheService.delByPattern('posts:*');

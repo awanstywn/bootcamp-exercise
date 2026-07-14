@@ -3,7 +3,7 @@
  * @description Provides a high-level abstraction over Redis for caching application data.
  * @relations Utilizes `config/redis.ts`. Used by other business services (like `content.service.ts`) to cache database queries.
  * @logic
- * - Implements a "fail-open" pattern. If Redis crashes, errors are logged to Winston and it gracefully returns `null`, forcing a database query rather than crashing the app.
+ * - Implements a "fail-open" pattern. If Redis is unavailable or crashes, errors are logged to Winston and it gracefully returns `null`, forcing a database query rather than crashing the app.
  * - Supports setting TTLs, deleting specific keys, and bulk invalidation using patterns (`delByPattern`).
  */
 import { redisClient } from '../config/redis.js';
@@ -12,9 +12,10 @@ import { logger } from '../config/logger.js';
 
 export class CacheService {
   /**
-   * Get data from cache. Fails open on error.
+   * Get data from cache. Fails open on error or when Redis is unavailable.
    */
   static async get<T>(key: string): Promise<T | null> {
+    if (!redisClient) return null; // Redis not available, treat as cache miss
     try {
       const data = await redisClient.get(key);
       if (!data) return null;
@@ -29,6 +30,7 @@ export class CacheService {
    * Save data to cache
    */
   static async set<T>(key: string, data: T, ttlSeconds: number = env.CACHE_TTL): Promise<void> {
+    if (!redisClient) return; // Redis not available, silently skip
     try {
       const stringData = JSON.stringify(data);
       await redisClient.setex(key, ttlSeconds, stringData);
@@ -41,6 +43,7 @@ export class CacheService {
    * Delete a specific key
    */
   static async del(key: string): Promise<void> {
+    if (!redisClient) return; // Redis not available, silently skip
     try {
       await redisClient.del(key);
     } catch (error) {
@@ -52,6 +55,7 @@ export class CacheService {
    * Delete all keys matching a pattern (e.g. "posts:*") using SCAN
    */
   static async delByPattern(pattern: string): Promise<void> {
+    if (!redisClient) return; // Redis not available, silently skip
     try {
       const stream = redisClient.scanStream({
         match: pattern,
@@ -60,7 +64,7 @@ export class CacheService {
 
       stream.on('data', async (keys: string[]) => {
         if (keys.length > 0) {
-          const pipeline = redisClient.pipeline();
+          const pipeline = redisClient!.pipeline();
           keys.forEach((key) => pipeline.del(key));
           await pipeline.exec();
         }

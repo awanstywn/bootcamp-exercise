@@ -9,10 +9,14 @@ import { useEffect } from 'react';
 import { io } from 'socket.io-client';
 import toast from 'react-hot-toast';
 
-// Bypass Vite proxy in development because Vite SSR middleware drops WebSocket upgrades.
-// In production, it connects to the same host (/).
+// WebSockets (socket.io) do NOT work on Vercel Serverless Functions.
+// We disable autoConnect in production to prevent endless connection errors in the console.
+const isVercel = import.meta.env.PROD; 
 const SOCKET_URL = import.meta.env.DEV ? 'http://localhost:3000' : '/';
-const socket = io(SOCKET_URL, { path: '/socket.io' });
+const socket = io(SOCKET_URL, { 
+  path: '/socket.io',
+  autoConnect: !isVercel // Disable socket.io when deployed to Vercel
+});
 
 export function useSocket() {
   useEffect(() => {

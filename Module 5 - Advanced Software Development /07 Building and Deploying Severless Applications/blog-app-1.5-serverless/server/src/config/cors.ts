@@ -5,6 +5,7 @@
  * @relations Used in `app.ts` as an argument to the `cors()` middleware. Relies on `env.CLIENT_URL`.
  * @logic
  * - Allows requests specifically from the frontend `CLIENT_URL`.
+ * - Also allows Vercel preview deployment URLs (*.vercel.app).
  * - Allows credentials (cookies) to be sent cross-origin.
  * - Restricts methods to standard REST verbs.
  */
@@ -12,7 +13,10 @@ import { CorsOptions } from 'cors';
 import { env } from './env.js';
 
 export const corsOptions: CorsOptions = {
-  origin: env.CLIENT_URL,
+  origin: [
+    env.CLIENT_URL,
+    /\.vercel\.app$/,  // Allow all Vercel preview deployments
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],

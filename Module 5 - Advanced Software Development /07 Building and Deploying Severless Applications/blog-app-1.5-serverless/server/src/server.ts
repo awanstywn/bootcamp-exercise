@@ -98,4 +98,8 @@ async function startServer() {
   }
 }
 
-startServer();
+// Only start the HTTP server if we are running locally.
+// On Vercel, the serverless function handles requests without app.listen()
+if (!process.env.VERCEL) {
+  startServer();
+}

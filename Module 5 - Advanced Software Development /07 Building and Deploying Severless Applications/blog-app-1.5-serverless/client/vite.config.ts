@@ -2,11 +2,10 @@
  * @fileoverview Vite Configuration
  * @objective Configure the frontend build tool, including React support and Progressive Web App (PWA) generation.
  * @risk Misconfiguring caching strategies in `workbox` can result in users seeing stale content or breaking offline mode.
- * @relations Used by `npm run dev:client` and `npm run build:client`. Generates the `dist/` output.
+ * @relations Used by `npm run dev` and `npm run build`. Generates the `dist/` output.
  * @logic
  * - `react()`: Enables JSX transformation and Fast Refresh.
  * - `VitePWA()`: Generates the `manifest.json` and configures Workbox service workers.
- * - Sets a `NetworkFirst` strategy for HTML documents to ensure fresh SSR content, and `StaleWhileRevalidate` for assets.
  */
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -43,7 +42,6 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // Use network first caching strategy suitable for dynamic SSR sites
         runtimeCaching: [
           {
             urlPattern: ({ request }) => request.destination === 'document',
@@ -75,13 +73,6 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
-      '/socket.io': {
-        target: 'http://localhost:3000',
-        ws: true,
-      },
     },
-  },
-  ssr: {
-    noExternal: ['react-helmet-async', '@react-oauth/google'],
   },
 });

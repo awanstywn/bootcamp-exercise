@@ -15,7 +15,7 @@ import { authenticate } from '../middleware/auth.middleware.js';
 import { authorize } from '../middleware/rbac.middleware.js';
 import { UploadController } from '../controllers/upload.controller.js';
 import { rateLimit } from 'express-rate-limit';
-import RedisStore from 'rate-limit-redis';
+import { RedisStore } from 'rate-limit-redis';
 import { redisClient } from '../config/redis.js';
 import { Role } from '@prisma/client';
 
@@ -25,10 +25,13 @@ const uploadLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
   max: 10, // Limit each IP to 10 image uploads per hour to prevent Cloudinary abuse
   message: { error: 'Upload limit reached. Please try again later.' },
-  store: new RedisStore({
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    sendCommand: (...args: string[]) => redisClient.call(args[0], ...args.slice(1)) as any,
-  }),
+  // Use RedisStore if Redis is available, otherwise fall back to MemoryStore
+  store: redisClient
+    ? new RedisStore({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        sendCommand: (...args: string[]) => redisClient!.call(args[0], ...args.slice(1)) as any,
+      })
+    : undefined,
 });
 
 router.post(
