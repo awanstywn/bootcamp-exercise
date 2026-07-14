@@ -67,9 +67,8 @@ export const errorMiddleware = (err: Error, req: Request, res: Response, _next: 
     success: false,
     error: {
       code: 'ERR_INTERNAL_SERVER',
-      message: 'Internal Server Error',
-      details: null,
-      ...(env.NODE_ENV === 'development' && { stack: err.stack }) 
+      message: err.message || 'Internal Server Error',
+      details: err.stack,
     }
   });
 };
