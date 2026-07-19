@@ -1,0 +1,15 @@
+services:
+  # ==========================================
+  # The Application Service (Backend API)
+  # ==========================================
+  app:
+    image: mini-grocery-app:v2
+    container_name: mini-grocery-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    restart: unless-stopped

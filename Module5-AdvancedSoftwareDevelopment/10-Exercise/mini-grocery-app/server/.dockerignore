@@ -1,0 +1,36 @@
+# Dependency directories
+**/node_modules
+
+# Build outputs
+**/dist
+
+# Environment variables
+**/.env
+**/.env.*
+!**/.env.example
+
+# Logs
+**/*.log
+
+# Uploads (don't include local uploads in the image)
+server/uploads/*
+!server/uploads/.gitkeep
+
+# Docker-related files
+Dockerfile
+.dockerignore
+
+# Git
+.git
+.gitignore
+
+# IDE and OS files
+.vscode
+.idea
+.DS_Store
+
+# Documentation & Configs
+README.md
+*.md
+eslint.config.mjs
+.prettierrc
