@@ -96,3 +96,9 @@ Please refer to the `agent.md` and `README.md` files within each workspace (`cli
 
 ## 📄 License
 This project is proprietary and confidential.
+
+
+## 🔐 Demo Credentials
+For testing the application, you can use the following demo accounts:
+- **Admin:** `admin@parfume.com` | Password: `admin123` | Role: `ADMIN`
+- **Customer:** `test@example.com` | Password: `password123` | Role: `CUSTOMER`

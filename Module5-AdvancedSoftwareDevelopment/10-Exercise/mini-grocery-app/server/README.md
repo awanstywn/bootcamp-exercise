@@ -115,3 +115,9 @@ npm run docker:down
 ├── package.json
 └── README.md
 ```
+
+
+## 🔐 Demo Credentials
+For testing the application, you can use the following demo accounts:
+- **Admin:** `admin@sembako.com` | Password: `Admin123!` | Role: `ADMIN`
+- **Buyer:** `buyer@sembako.com` | Password: `Buyer123!` | Role: `VISITOR`

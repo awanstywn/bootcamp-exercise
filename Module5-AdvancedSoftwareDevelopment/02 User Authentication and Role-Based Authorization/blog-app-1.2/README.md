@@ -84,3 +84,9 @@ npm run build
 
 The main objective of this application is to provide a seamless reading and writing experience for a blog, complete with authentication, rich text/content handling, and user engagement features.
 **Risks:** Handle user data with care. Ensure that environment variables (like JWT secrets) are kept secure and never exposed to the client. Keep Prisma schemas synced with your database.
+
+
+## 🔐 Demo Credentials
+For testing the application, you can use the following demo accounts:
+- **Admin:** `admin@blogapp.com` | Password: `password123` | Role: `ADMIN`
+- **Author:** `johndoe@example.com` | Password: `password123` | Role: `AUTHOR`
