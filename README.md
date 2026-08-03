@@ -123,6 +123,15 @@ DevOps, CI/CD, testing, deployment strategies, and system monitoring.
 | 02 CI CD Pipelines | ✅ Completed | *No specific exercise* |
 | 03 System Reliability with Monitoring and Logs | ✅ Completed | *No specific exercise* |
 
+### Code Challenge
+Additional programming challenges and standalone projects outside the core modules.
+
+| Sub Module | Status | Notes / Exercises |
+| ---------- | ------ | ----------------- |
+| 01 Leetcode | ✅ Completed | Various Leetcode algorithmic challenges |
+| 02 Personal Website | ✅ Completed | `profile-website/` |
+| 03 Company Profile | ✅ Completed | `company-profile/` |
+
 ---
 
 ## 🎯 Learning Journey
