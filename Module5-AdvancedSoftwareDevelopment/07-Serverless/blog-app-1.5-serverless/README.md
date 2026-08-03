@@ -2,6 +2,8 @@
 
 Welcome to the Fullstack Blog Application! This is a modern, responsive, and robust blog platform built using a modern JavaScript/TypeScript stack.
 
+**👁️ Live Preview on Vercel:** [https://bootcamp-exercise.vercel.app/](https://bootcamp-exercise.vercel.app/)
+
 ## Architecture
 
 This project is a monorepo containing a full-stack application divided into a `client` and a `server`, as well as a `shared` directory for common types.
