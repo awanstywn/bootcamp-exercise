@@ -26,30 +26,25 @@
 // s consists of English letters, digits, symbols and spaces.
 
 function lengthOfLongestSubstring(s: string): number {
-    const n = s.length;
+    let maxLength = 0;
+    let left = 0;
+    const charMap = new Map<string, number>();
 
-    let res = 0;
-    for (let i = 0; i < n; i++) {
-        for (let j = i; j < n; j++) {
-            if (checkRepetition(s, i, j)) {
-                res = Math.max(res, j - i + 1);
-            }
-        }
-    }
+    for (let right = 0; right < s.length; right++) {
+        const currentChar = s[right];
 
-    function checkRepetition(s: string, start: number, end: number): boolean {
-        const chars = new Set<string>();
-
-        for (let i = start; i <= end; i++) {
-            const c = s[i];
-            if (chars.has(c)) {
-                return false;
-            }
-            chars.add(c);
+        // If the character is already in our map and its index is within our current window
+        if (charMap.has(currentChar) && charMap.get(currentChar)! >= left) {
+            // Move the left pointer past the previous occurrence of the duplicate character
+            left = charMap.get(currentChar)! + 1;
         }
 
-        return true;
+        // Store or update the last seen index of the character
+        charMap.set(currentChar, right);
+
+        // Calculate the current window size and update the max length
+        maxLength = Math.max(maxLength, right - left + 1);
     }
 
-    return res;
+    return maxLength;
 }
