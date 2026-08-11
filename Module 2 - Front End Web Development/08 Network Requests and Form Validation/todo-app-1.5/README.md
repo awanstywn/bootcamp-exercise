@@ -30,9 +30,14 @@ Since this application connects to a real backend, you can either create your ow
 4. You will be redirected to Sign In. Use the credentials you just created to log in.
 
 ### Option 2: Use Demo Credentials
-If you prefer not to register, you can use the following test account:
+If you prefer not to register, you can use the following test accounts that are already seeded with data:
 
-- **Email**: `test@example.com`
+**User 1:**
+- **Email**: `alice@example.com`
+- **Password**: `password123`
+
+**User 2:**
+- **Email**: `bob@example.com`
 - **Password**: `password123`
 
 ### Testing the Authorization Flow
