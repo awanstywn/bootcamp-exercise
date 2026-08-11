@@ -49,12 +49,10 @@ Boot up both the React frontend and the Express backend simultaneously:
 npm run dev
 ```
 
-### Admin Login
-
-Since this blog is configured for a single admin user, use the following credentials to access the dashboard at `/login`:
-
-- **Email:** `admin@blog.com`
-- **Password:** `admin123`
+## 🔐 Demo Credentials
+For testing the application, you can use the following demo accounts:
+- **Admin:** `admin@blogapp.com` | Password: `password123` | Role: `ADMIN`
+- **Author:** `johndoe@example.com` | Password: `password123` | Role: `AUTHOR`
 
 ### Production Build
 
