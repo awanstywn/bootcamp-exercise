@@ -45,8 +45,8 @@ const Login = () => {
       setError(null);
       // Run login flow
       await login(email, password);
-      // Success: route to the Blog creation page
-      navigate('/blog/create');
+      // Success: route to the homepage
+      navigate('/');
     } catch {
       setError('Invalid email or password. Please try again.');
     } finally {

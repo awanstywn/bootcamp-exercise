@@ -11,11 +11,13 @@ import { Link } from 'react-router-dom';
 import { fetchServices } from '@/lib/backendless';
 import type { Service } from '@/types';
 import { CheckCircle2, ArrowRight, Zap } from 'lucide-react';
+import { useAuthStore } from '@/store/useAuthStore';
 
 /**
  * Services listing page component.
  */
 const Services = () => {
+  const { isAuthenticated } = useAuthStore();
   // Local states holding CMS service documents and loading statuses
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
@@ -162,9 +164,11 @@ const Services = () => {
           <p className="text-gray-400 mb-10 max-w-xl mx-auto text-lg">
             Create an account instantly and start testing our APIs with a free sandbox environment.
           </p>
-          <Link to="/register" className="btn-primary py-3 px-8 text-lg">
-            Create account
-          </Link>
+          {!isAuthenticated && (
+            <Link to="/register" className="btn-primary py-3 px-8 text-lg">
+              Create account
+            </Link>
+          )}
         </div>
       </section>
     </>

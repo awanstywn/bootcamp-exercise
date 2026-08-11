@@ -28,7 +28,7 @@ const BlogDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const { user } = useAuthStore();
+  const { user, isAuthenticated } = useAuthStore();
   const navigate = useNavigate();
 
   const handleDelete = async () => {
@@ -155,7 +155,9 @@ const BlogDetail = () => {
           <p className="text-gray-500 mb-8 max-w-xl mx-auto">
             Join thousands of developers integrating the world's most powerful payments APIs.
           </p>
-          <Link to="/register" className="btn-primary">Create an account</Link>
+          {!isAuthenticated && (
+            <Link to="/register" className="btn-primary">Create an account</Link>
+          )}
         </div>
       </section>
     </>

@@ -47,8 +47,8 @@ const Register = () => {
       setError(null);
       // Run registration flow
       await registerAction(email, password, name);
-      // Success: navigate to the blog creation page
-      navigate('/blog/create');
+      // Success: navigate to the homepage
+      navigate('/');
     } catch (err: unknown) {
       const error = err as Error;
       setError(error.message || 'Registration failed. Please try again.');
