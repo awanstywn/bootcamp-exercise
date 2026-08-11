@@ -96,7 +96,7 @@ Building intelligent applications with AI/ML integration and leveraging AI for U
 | 02 AI-Assisted Software Development | ✅ Completed | Monorepo setup (`client/`, `server/`, `shared/`) |
 | 03 AI-Assisted UI UX Design for Software Development | ✅ Completed | `parfume-marketplace/` |
 | 04 AI-Enhanced Low-Code:No-Code Platforms | ✅ Completed | *No specific exercise* |
-| 05 AI Integration in Applications | ✅ Completed | `chatbot-code/` |
+| 05 AI Integration in Applications | ✅ Completed | [Live Preview](https://awanstywn.github.io/bootcamp-exercise/demos/chatbot-code/) • [Source Code](Module%204%20-%20AI-Powered%20SOftware%20Development/05%20AI%20Integration%20in%20Applications/chatbot-code/) |
 
 ### Module 5 - Advanced Software Development
 Advanced patterns, scalability, testing, and enterprise-level development practices.
