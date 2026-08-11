@@ -14,7 +14,10 @@ This is a React application built with TypeScript and Vite that demonstrates app
    ```bash
    npm install
    ```
-2. Start the development server:
+2. Set up your environment variables:
+   - Copy `.env.example` to a new file named `.env`.
+   - Update the variables with your own Backendless Application ID and REST API Key (or use the keys provided separately in your assignment submission).
+3. Start the development server:
    ```bash
    npm run dev
    ```
