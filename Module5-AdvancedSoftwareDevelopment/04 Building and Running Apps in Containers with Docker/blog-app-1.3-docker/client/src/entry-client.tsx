@@ -5,7 +5,7 @@
  * @relations Bundled by Vite and injected into `index.html` via a `<script>` tag. Renders `<App />`.
  * @logic
  * - Uses `ReactDOM.hydrateRoot()` instead of `createRoot()` because the HTML is already rendered by the SSR server.
- * - Wraps the app in `<BrowserRouter>` for client-side routing.
+ * - Wraps the app in `<BrowserRouter basename={import.meta.env.BASE_URL}>` for client-side routing.
  * - Wraps the app in `<HelmetProvider>` to manage dynamic `<head>` tags (SEO).
  */
 import React from 'react';
@@ -23,7 +23,7 @@ hydrateRoot(
   <React.StrictMode>
     <HelmetProvider>
       <GoogleOAuthProvider clientId={googleClientId}>
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
           <App />
         </BrowserRouter>
       </GoogleOAuthProvider>
