@@ -98,7 +98,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className="flex-1 w-full relative aspect-4/3 bg-slate-50 border border-slate-100 rounded-lg flex items-center justify-center overflow-hidden shadow-sm">
-          <img src="/hero-image.png" alt="Hero illustration" className="w-full h-full object-cover" fetchPriority="high" />
+          <img src={`${import.meta.env.BASE_URL}hero-image.png`} alt="Hero illustration" className="w-full h-full object-cover" fetchPriority="high" />
         </div>
       </div>
 
