@@ -54,8 +54,18 @@ When redesigning the Stripe experience, several deliberate choices were made:
 
 ## 🛠️ Getting Started
 
-### Admin Credentials (Mentor Review)
-To test the admin moderation features (Editing/Deleting posts, auto-featuring posts):
+### How to Test the App (Demo Credentials)
+
+To help the examiner test the application without needing to create an account from scratch, you can use the following pre-seeded demo accounts:
+
+**1. Normal User Account**
+Use this account to test the standard user flow, such as creating new community blog posts.
+- **Email:** `user@example.com`
+- **Password:** `password123`
+*(Note: If this user doesn't exist, you can easily create one using the Register page in the app).*
+
+**2. Admin Account (Mentor Review)**
+Use this account to test elevated privileges, such as the ability to Edit or Delete posts written by other users, and auto-featuring new posts.
 - **Email:** `admin@admin.com`
 - **Password:** `password123`
 
