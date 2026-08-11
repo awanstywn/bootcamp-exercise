@@ -1,73 +1,42 @@
-# React + TypeScript + Vite
+# Todo App 1.5 (Real Authentication with Backendless)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React application built with TypeScript and Vite that demonstrates application data flow, global state management, and real network requests using Axios and the Backendless API.
 
-Currently, two official plugins are available:
+## Features
+- **Real Authentication**: Full registration and login flow connected to a Backendless database.
+- **Global State**: Manages user sessions and secure tokens using Zustand.
+- **Axios Interceptors**: Automatically injects authorization tokens into API requests and globally handles session expiration.
+- **Data Persistence**: Uses Zustand's `persist` middleware to save the user token in the browser's `localStorage` to keep users logged in.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## How to Run Locally
 
-## React Compiler
+1. Install the dependencies:
+   ```bash
+   npm install
+   ```
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## How to Test the App (Demo Credentials)
 
-## Expanding the ESLint configuration
+Since this application connects to a real backend, you can either create your own account or use the provided demo credentials to test the features.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Option 1: Create a New Account
+1. Open the app and click on **Sign Up** (or navigate to the registration page).
+2. Enter a Name, Email, and Password.
+3. Submit the form to register your account in the database.
+4. You will be redirected to Sign In. Use the credentials you just created to log in.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Option 2: Use Demo Credentials
+If you prefer not to register, you can use the following test account:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Email**: `test@example.com`
+- **Password**: `password123`
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Testing the Authorization Flow
+1. **Login**: Enter the credentials and click **Sign In**. The backend will return a secure `user-token` which is saved locally.
+2. **Persistence**: Refresh the page. You will notice you are still logged in because the token is persisted in `localStorage`.
+3. **Protected Actions**: Try adding or deleting a Todo. The Axios Request Interceptor automatically attaches your token to these requests to authorize them.
+4. **Logout**: Click **Sign Out**. This clears your session from the backend and wipes the token from `localStorage`, successfully returning you to an unauthenticated state.
